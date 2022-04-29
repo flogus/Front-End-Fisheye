@@ -1,17 +1,37 @@
 function photographerFactory(data) {
-    const { name, portrait } = data;
+  const { name, portrait, id, city, country, tagline, price } = data;
 
-    const picture = `assets/photographers/${portrait}`;
+  const picture = `assets/photographers/${portrait}`;
 
-    function getUserCardDOM() {
-        const article = document.createElement( 'article' );
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        const h2 = document.createElement( 'h2' );
-        h2.textContent = name;
-        article.appendChild(img);
-        article.appendChild(h2);
-        return (article);
-    }
-    return { name, picture, getUserCardDOM }
+  function getUserCardDOM() {
+    const lien = document.createElement("a");
+    lien.setAttribute("href", "photographer.html?id=" + id);
+
+    const article = document.createElement("article");
+    const divDescription = document.createElement("div");
+
+    const img = document.createElement("img");
+    img.setAttribute("src", picture);
+    img.setAttribute("alt", "");
+
+    const h2 = document.createElement("h2");
+    const pCityCountry = document.createElement("p");
+    const pTagLine = document.createElement("p");
+    const pPrice = document.createElement("p");
+
+    h2.textContent = name;
+    pCityCountry.textContent = city + ", " + country;
+    pTagLine.textContent = tagline;
+    pPrice.textContent = price + "€/jour";
+
+    article.appendChild(lien);
+    article.appendChild(divDescription);
+    lien.appendChild(img);
+    lien.appendChild(h2);
+    divDescription.appendChild(pCityCountry);
+    divDescription.appendChild(pTagLine);
+    divDescription.appendChild(pPrice);
+    return article;
+  }
+  return { name, picture, getUserCardDOM };
 }
