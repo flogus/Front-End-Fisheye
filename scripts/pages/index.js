@@ -2,6 +2,7 @@ async function getPhotographers() {
   // Penser à remplacer par les données récupérées dans le json
   const response = await fetch("./data/photographers.json");
   const data = await response.json();
+
   const photographers = data.photographers;
 
   const photographerslocal = [
