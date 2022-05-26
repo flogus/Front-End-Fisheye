@@ -11,8 +11,13 @@ function photographerFactory(data) {
     const divDescription = document.createElement("div");
 
     const img = document.createElement("img");
+
+    if (picture == undefined) {
+      picture = "account.png";
+    }
     img.setAttribute("src", picture);
-    img.setAttribute("alt", "");
+    console.log("Picture", picture);
+    img.setAttribute("alt", name);
 
     const h2 = document.createElement("h2");
     const pCityCountry = document.createElement("p");
