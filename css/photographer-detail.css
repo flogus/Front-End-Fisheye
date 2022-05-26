@@ -1,0 +1,21 @@
+.photograph-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.photograph-header article h2 {
+  color: #d3573c;
+  font-size: 62px;
+  margin: 0 0 6px 0;
+}
+.photograph-header article p:nth-child(2n) {
+  color: #901c1c;
+  font-size: 22px;
+  margin: 0;
+}
+.photograph-header img {
+  height: 200px;
+  width: 200px;
+  clip-path: circle(100px at center);
+}
