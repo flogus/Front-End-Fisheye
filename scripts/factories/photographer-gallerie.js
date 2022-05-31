@@ -1,7 +1,6 @@
 function mediaDetailFactory(data, photographName) {
-  const { id, title, image, video, date, price } = data;
+  const { id, title, image, video, date, price, likes } = data;
 
-  console.log(image, video);
   const gallerieImage = `assets/photographers/${photographName}/${image}`;
   const gallerieVideo = `assets/photographers/${photographName}/${video}`;
 
@@ -14,7 +13,9 @@ function mediaDetailFactory(data, photographName) {
     const descrip = document.createElement("div");
     descrip.setAttribute("class", "gallerie--card-description");
     const descripText = document.createElement("div");
-    const descripLikes = document.createElement("div");
+    const descripLikes = document.createElement("i");
+    descripLikes.textContent = likes;
+    descripLikes.setAttribute("class", "fa-solid fa-heart");
 
     // File type
     if (image !== undefined) {
@@ -31,10 +32,10 @@ function mediaDetailFactory(data, photographName) {
       gallerie.appendChild(video);
     }
 
+    //<i class="fa-solid fa-heart"></i>
     descrip.appendChild(descripText);
     descrip.appendChild(descripLikes);
     descripText.textContent = title;
-    descripLikes.textContent = "Like";
     gallerie.appendChild(descrip);
     return gallerieCard;
   }
