@@ -3,17 +3,14 @@ function photographerDetailFactory(data) {
 
   const picture = `assets/photographers/${portrait}`;
 
-  function getUserPictureDOM() {
-    //if (id == "82") {
+  function getUserPictureDOM(id) {
     const userPicture = document.createElement("img");
     userPicture.setAttribute("src", picture);
     console.log("Picture", picture);
     userPicture.setAttribute("alt", name);
     return userPicture;
-    // }
   }
-  function getUserDetailDOM() {
-    // if (id == "82") {
+  function getUserDetailDOM(id) {
     const article = document.createElement("article");
     const h2 = document.createElement("h2");
     const pCityCountry = document.createElement("p");
@@ -28,7 +25,6 @@ function photographerDetailFactory(data) {
     article.appendChild(pTagLine);
 
     return article;
-    // }
   }
 
   return { getUserPictureDOM, getUserDetailDOM };

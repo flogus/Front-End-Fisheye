@@ -1,7 +1,9 @@
-function mediaDetailFactory(data) {
-  const { id, portrait, title, image, date, price, name } = data;
+function mediaDetailFactory(data, photographName) {
+  const { id, title, image, video, date, price } = data;
 
-  const gallerieImage = `assets/photographers/Tracy/${image}`;
+  console.log(image, video);
+  const gallerieImage = `assets/photographers/${photographName}/${image}`;
+  const gallerieVideo = `assets/photographers/${photographName}/${video}`;
 
   function getUserGallerieDOM() {
     const gallerieCard = document.createElement("div");
@@ -13,17 +15,27 @@ function mediaDetailFactory(data) {
     descrip.setAttribute("class", "gallerie--card-description");
     const descripText = document.createElement("div");
     const descripLikes = document.createElement("div");
-    const img = document.createElement("img");
-    img.src = gallerieImage;
+
+    // File type
+    if (image !== undefined) {
+      const img = document.createElement("img");
+      img.src = gallerieImage;
+      gallerie.appendChild(img);
+    }
+    if (video !== undefined) {
+      const video = document.createElement("video");
+      const source = document.createElement("source");
+      source.src = gallerieVideo;
+      source.type = "video/mp4";
+      video.appendChild(source);
+      gallerie.appendChild(video);
+    }
 
     descrip.appendChild(descripText);
     descrip.appendChild(descripLikes);
     descripText.textContent = title;
     descripLikes.textContent = "Like";
-
-    gallerie.appendChild(img);
     gallerie.appendChild(descrip);
-    //gallerie.textContent = id + title + name;
     return gallerieCard;
   }
   return { getUserGallerieDOM };

@@ -44,29 +44,46 @@ async function getMedias() {
   };
 }
 async function displayData(photographers, medias) {
-  // console.log("photographer", photographers);
+  // console.log("photographers", photographers);
   // console.log("medias", medias);
+  // Get Id param
+  const QueryString = window.location.search;
+  const urlParams = new URLSearchParams(QueryString);
+  const currentPhotographerId = urlParams.get("id");
 
+  photographers.forEach((photographer) => {
+    //console.log("photographer.id", photographer.id);
+    photographer.medias = [];
+    medias.forEach((media) => {
+      if (photographer.id == media.photographerId) {
+        photographer.medias.push(media.id);
+      }
+    });
+  });
+
+  console.log("newPhotographers", photographers);
   const photographersSection = document.querySelector(".photograph-header");
   const photographersSectionButton = document.querySelector(".contact_button");
 
+  // Construction du block information du photographe
   photographers.forEach((photographer) => {
-    const photographerModel = photographerDetailFactory(photographer);
-    const userDetailDOM = photographerModel.getUserDetailDOM();
-    const userPicture = photographerModel.getUserPictureDOM();
-    /*photographersSection.insertBefore(
-      userDetailDOM,
-      photographersSectionButton
-    );*/
-    photographersSection.appendChild(userDetailDOM);
-    photographersSection.appendChild(userPicture);
+    if (photographer.id == currentPhotographerId) {
+      const photographerModel = photographerDetailFactory(photographer);
+      const userDetailDOM = photographerModel.getUserDetailDOM();
+      const userPicture = photographerModel.getUserPictureDOM();
+
+      photographersSection.prepend(userDetailDOM);
+      photographersSection.appendChild(userPicture);
+    }
   });
 
   const photographerdGallerie = document.getElementById("photograph-gallerie");
   console.log("photographerdGallerie : ", photographerdGallerie);
+  const photographName = photographers.name;
+
   medias.forEach((media) => {
-    if (media.photographerId == "82") {
-      const mediaModel = mediaDetailFactory(media);
+    if (media.photographerId == currentPhotographerId) {
+      const mediaModel = mediaDetailFactory(media, currentPhotographerId);
       const mediaDetail = mediaModel.getUserGallerieDOM();
 
       console.log("photo", media.id);
