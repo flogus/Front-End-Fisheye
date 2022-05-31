@@ -10,9 +10,17 @@ function mediaDetailFactory(data, photographName) {
     const gallerie = document.createElement("div");
     gallerieCard.appendChild(gallerie);
 
+    const imageLink = document.createElement("a");
+    imageLink.setAttribute("href", "#");
+    imageLink.setAttribute("title", "Ouvrir " + title);
+    gallerie.appendChild(imageLink);
+
     const descrip = document.createElement("div");
     descrip.setAttribute("class", "gallerie--card-description");
+
     const descripText = document.createElement("div");
+    descripText.textContent = title;
+
     const descripLikes = document.createElement("i");
     descripLikes.textContent = likes;
     descripLikes.setAttribute("class", "fa-solid fa-heart");
@@ -21,7 +29,7 @@ function mediaDetailFactory(data, photographName) {
     if (image !== undefined) {
       const img = document.createElement("img");
       img.src = gallerieImage;
-      gallerie.appendChild(img);
+      imageLink.appendChild(img);
     }
     if (video !== undefined) {
       const video = document.createElement("video");
@@ -29,13 +37,11 @@ function mediaDetailFactory(data, photographName) {
       source.src = gallerieVideo;
       source.type = "video/mp4";
       video.appendChild(source);
-      gallerie.appendChild(video);
+      imageLink.appendChild(video);
     }
 
-    //<i class="fa-solid fa-heart"></i>
     descrip.appendChild(descripText);
     descrip.appendChild(descripLikes);
-    descripText.textContent = title;
     gallerie.appendChild(descrip);
     return gallerieCard;
   }
