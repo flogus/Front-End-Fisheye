@@ -13,7 +13,13 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="index.html" title="Fisheye Home">
+        <img
+          src="assets/images/logo.png"
+          class="logo"
+          alt="Fisheye Home page"
+        />
+      </a>
     </header>
     <main id="main">
       <div class="photograph-header">
@@ -21,7 +27,18 @@
           Contactez-moi
         </button>
       </div>
-      <div><p>Trier par</p></div>
+      <div id="navigation">
+        <span>Trier par</span>
+        <span
+          ><nav>
+            <ul role="menu" aria-label="Filtres">
+              <li role="none"><a role="menuitem" href="/">Popularité</a></li>
+              <li role="none"><a role="menuitem" href="/">Date</a></li>
+              <li role="none"><a role="menuitem" href="/">Titre</a></li>
+            </ul>
+          </nav>
+        </span>
+      </div>
       <div id="photograph-gallerie"></div>
     </main>
     <div id="contact_modal">
