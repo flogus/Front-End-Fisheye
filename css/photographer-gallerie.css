@@ -16,18 +16,36 @@
   height: 200px;
   width: 200px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-#photograph-gallerie div.gallerie--card img,
 #photograph-gallerie div.gallerie--card video {
-  width: 300px;
-  height: auto;
+  width: auto;
+  height: 200px;
   position: relative;
-  left: -50px;
+  border: 3px solid red;
 }
+
+#photograph-gallerie div.gallerie--card a.orientation-square img {
+  width: 200px;
+  height: 200px;
+}
+#photograph-gallerie div.gallerie--card a.orientation-portrait img {
+  width: 200px;
+  height: auto;
+}
+#photograph-gallerie div.gallerie--card a.orientation-landscape img {
+  height: 200px;
+  width: auto;
+}
+
 #photograph-gallerie div.gallerie--card div.gallerie--card-description {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  color: #901c1c;
+  padding-top: 5px;
 }
 #photograph-gallerie div.gallerie--card div:first-child {
   display: flex;

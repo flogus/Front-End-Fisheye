@@ -29,13 +29,29 @@ function mediaDetailFactory(data, photographName) {
     if (image !== undefined) {
       const img = document.createElement("img");
       img.src = gallerieImage;
+      const ratio = img.width / img.height;
+      let orientationClass = "";
+
       imageLink.appendChild(img);
+      if (ratio == 1) {
+        orientationClass = "orientation-square";
+      }
+      if (ratio > 1) {
+        orientationClass = "orientation-landscape";
+      }
+      if (ratio < 1) {
+        orientationClass = "orientation-portrait";
+      }
+      imageLink.setAttribute("class", orientationClass);
     }
     if (video !== undefined) {
       const video = document.createElement("video");
+      //video.setAttribute("controls", "");
       const source = document.createElement("source");
+      console.log("Video ratio : ", gallerieVideo);
       source.src = gallerieVideo;
       source.type = "video/mp4";
+
       video.appendChild(source);
       imageLink.appendChild(video);
     }
