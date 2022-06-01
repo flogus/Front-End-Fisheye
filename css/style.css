@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0 40px;
   background-color: lightpink;
+  position: relative;
 }
 #main {
   background-color: bisque;
