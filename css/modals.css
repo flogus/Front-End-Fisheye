@@ -4,9 +4,6 @@
 }
 #media_modal .modal {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
   position: fixed;
   top: 10%;
   left: 10%;
@@ -14,26 +11,30 @@
   height: 80%;
   padding: 0;
 }
-#media_modal .modal div:first-child,
-#media_modal .modal div:last-child {
-  flex: 0 0 20px;
-}
 #media_modal .modal div {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
+  height: 100%;
 }
-#media_modal .modal div:last-child {
+#media_modal .modal div div {
+  flex: 0 1 auto;
+}
+#media_modal .modal div div:first-child,
+#media_modal .modal div div:last-child {
+  flex: 0 0 20px;
+}
+#media_modal .modal div div:first-child a,
+#media_modal .modal div div:last-child a {
+  flex: 0 0 20px;
+  border: 1px solid blue;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
 }
-#media_modal .modal div:last-child img:first-child {
+
+#media_modal div.modal > img {
   position: absolute;
   top: 0;
   right: 0;
-  border: 3px solid blue;
-}
-#media_modal .modal div:last-child img:last-child {
-  flex: 0 0 90%;
-  border: 3px solid red;
 }
