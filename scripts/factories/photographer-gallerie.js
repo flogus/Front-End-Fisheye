@@ -11,7 +11,9 @@ function mediaDetailFactory(data, photographName) {
     gallerieCard.appendChild(gallerie);
 
     const imageLink = document.createElement("a");
-    imageLink.setAttribute("href", "#");
+    const anchorName = title.toLowerCase().replaceAll(" ", "-");
+    imageLink.setAttribute("href", "#" + anchorName);
+    gallerie.setAttribute("id", anchorName);
     imageLink.setAttribute("title", "Ouvrir " + title);
     gallerie.appendChild(imageLink);
 
@@ -48,7 +50,7 @@ function mediaDetailFactory(data, photographName) {
       const video = document.createElement("video");
       //video.setAttribute("controls", "");
       const source = document.createElement("source");
-      console.log("Video ratio : ", gallerieVideo);
+      //console.log("Video ratio : ", gallerieVideo);
       source.src = gallerieVideo;
       source.type = "video/mp4";
 
