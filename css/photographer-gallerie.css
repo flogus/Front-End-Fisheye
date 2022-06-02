@@ -79,3 +79,7 @@
   height: 90%;
   width: 90%;
 }
+.svg-color {
+  filter: brightness(0) saturate(100%) invert(10%) sepia(76%) saturate(5667%)
+    hue-rotate(357deg) brightness(82%) contrast(81%);
+}

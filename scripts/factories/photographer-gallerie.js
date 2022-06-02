@@ -23,9 +23,15 @@ function mediaDetailFactory(data, photographName) {
     const descripText = document.createElement("div");
     descripText.textContent = title;
 
-    const descripLikes = document.createElement("i");
+    const descripLikes = document.createElement("span");
     descripLikes.textContent = likes;
-    descripLikes.setAttribute("class", "fa-solid fa-heart");
+
+    const descripHeart = document.createElement("img");
+
+    descripHeart.setAttribute("src", "assets/icons/heart.svg");
+    descripHeart.setAttribute("class", "svg-color");
+
+    descripLikes.appendChild(descripHeart);
 
     // File type
     if (image !== undefined) {
