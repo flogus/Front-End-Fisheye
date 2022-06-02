@@ -32,13 +32,8 @@ closeButtons.forEach((btn) => {
 });
 
 function changeModalImage(imageName) {
-  let currentSrc = document
-    .getElementById("media")
-    .querySelector("img")
-    .getAttribute("src");
-  const currentSrcArr = currentSrc.split("/");
-  const currentImageName = currentSrcArr.pop();
-  const newSrc = currentSrcArr.join("/") + "/" + imageName;
+  const newSrc = "assets/photographers/" + imageName;
+  console.log("sources :", newSrc);
   document
     .getElementById("media")
     .querySelector("img")
