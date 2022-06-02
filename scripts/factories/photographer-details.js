@@ -6,7 +6,7 @@ function photographerDetailFactory(data) {
   function getUserPictureDOM(id) {
     const userPicture = document.createElement("img");
     userPicture.setAttribute("src", picture);
-    console.log("Picture", picture);
+    // console.log("Picture", picture);
     userPicture.setAttribute("alt", name);
     return userPicture;
   }

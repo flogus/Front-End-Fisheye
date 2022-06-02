@@ -16,7 +16,7 @@ function photographerFactory(data) {
       picture = "account.png";
     }
     img.setAttribute("src", picture);
-    console.log("Picture", picture);
+    //console.log("Picture", picture);
     img.setAttribute("alt", name);
 
     const h2 = document.createElement("h2");

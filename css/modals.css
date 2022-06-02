@@ -1,6 +1,7 @@
 #media_modal {
   z-index: 2;
   position: absolute;
+  display: none;
 }
 #media_modal .modal {
   display: flex;
@@ -23,18 +24,87 @@
 }
 #media_modal .modal div div:first-child,
 #media_modal .modal div div:last-child {
-  flex: 0 0 20px;
+  flex: 0 0 42px;
 }
 #media_modal .modal div div:first-child a,
 #media_modal .modal div div:last-child a {
-  flex: 0 0 20px;
-  border: 1px solid blue;
+  flex: 0 0 42px;
   display: flex;
   justify-content: center;
+  cursor: pointer;
+  filter: brightness(0) saturate(100%) invert(10%) sepia(76%) saturate(5667%)
+    hue-rotate(357deg) brightness(82%) contrast(81%);
 }
 
 #media_modal div.modal > img {
+  filter: brightness(0) saturate(100%) invert(10%) sepia(76%) saturate(5667%)
+    hue-rotate(357deg) brightness(82%) contrast(81%);
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  cursor: pointer;
+}
+
+#media_modal .modal {
+  background-color: #ffffff;
+}
+
+#media_modal .modal img {
+  fill: red;
+}
+
+/* modal */
+.modal {
+  border-radius: 5px;
+  background-color: #db8876;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px;
+  margin: auto;
+}
+
+.modal header {
+  justify-content: space-between;
+  width: 100%;
+}
+
+.modal header img {
+  cursor: pointer;
+}
+
+.modal header h2 {
+  font-size: 64px;
+  font-weight: normal;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form label {
+  color: #312e2e;
+  font-size: 36px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: self-start;
+  margin-bottom: 26px;
+}
+
+form input {
+  width: 100%;
+  height: 68px;
+  border: none;
+  border-radius: 5px;
 }

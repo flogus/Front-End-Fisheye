@@ -45,6 +45,7 @@ function mediaDetailFactory(data, photographName) {
         orientationClass = "orientation-portrait";
       }
       imageLink.setAttribute("class", orientationClass);
+      imageLink.setAttribute("imageName", image);
     }
     if (video !== undefined) {
       const video = document.createElement("video");

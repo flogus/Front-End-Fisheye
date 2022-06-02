@@ -1,20 +1,13 @@
-/*
-      console.log("Json", data.photographers, data.photographers[0].id);
-      console.log(data.photographers.filter((element) => element.id == 82));
-      const currentPhotographer = data.photographers.filter(
-        (element) => element.id == 82
-      );
-*/
 async function getPhotographers() {
   const photographers = await fetch("./data/photographers.json")
     .then((response) => {
-      console.log("response photographers", response);
+      //console.log("response photographers", response);
       return response.json();
     })
     .then((data) => {
       // Work with JSON data here
       return data.photographers;
-      console.log("Json photographers", data);
+      //console.log("Json photographers", data);
     })
     .catch((err) => {
       console.log("Erreur fetch photographers");
@@ -27,7 +20,7 @@ async function getPhotographers() {
 async function getMedias() {
   const medias = await fetch("./data/photographers.json")
     .then((response) => {
-      console.log("response media", response);
+      //console.log("response media", response);
       return response.json();
     })
     .then((data) => {
@@ -61,7 +54,7 @@ async function displayData(photographers, medias) {
     });
   });
 
-  console.log("newPhotographers", photographers);
+  //console.log("newPhotographers", photographers);
   const photographersSection = document.querySelector(".photograph-header");
   const photographersSectionButton = document.querySelector(".contact_button");
 
@@ -78,7 +71,7 @@ async function displayData(photographers, medias) {
   });
 
   const photographerdGallerie = document.getElementById("photograph-gallerie");
-  console.log("photographerdGallerie : ", photographerdGallerie);
+  //console.log("photographerdGallerie : ", photographerdGallerie);
   const photographName = photographers.name;
 
   medias.forEach((media) => {
@@ -86,7 +79,7 @@ async function displayData(photographers, medias) {
       const mediaModel = mediaDetailFactory(media, currentPhotographerId);
       const mediaDetail = mediaModel.getUserGallerieDOM();
 
-      console.log("photo", media.id);
+      //console.log("photo", media.id);
       photographerdGallerie.appendChild(mediaDetail);
     }
   });
@@ -97,6 +90,16 @@ async function init() {
   const { photographers } = await getPhotographers();
   const { medias } = await getMedias();
   displayData(photographers, medias);
+
+  // gallerie
+  const imageLinks = document.querySelectorAll(".gallerie--card a");
+  //console.log("imageLinks : ", imageLinks[0].getAttribute("imagename"));
+
+  imageLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      displayModal("media", link.getAttribute("imageName"));
+    });
+  });
 }
 
 init();

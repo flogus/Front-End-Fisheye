@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="css/layout-test.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/modals.css" rel="stylesheet" type="text/css" />
     <link href="css/photographer-detail.css" rel="stylesheet" type="text/css" />
@@ -34,7 +35,7 @@
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">
+        <button id="contact_button" class="contact_button">
           Contactez-moi
         </button>
       </div>
@@ -56,7 +57,7 @@
       <div class="modal">
         <header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" class="close-modal" />
         </header>
         <form>
           <div>
@@ -87,11 +88,8 @@
               <img src="assets/icons/previous.svg" onclick="previousMedia()" />
             </a>
           </div>
-          <div>
-            <img
-              width="50%"
-              src="assets/photographers/243/Animals_Rainbow.jpg"
-            />
+          <div id="media">
+            <img src="assets/photographers/243/Animals_Rainbow.jpg" />
           </div>
           <div>
             <a href="#">
@@ -99,16 +97,17 @@
             </a>
           </div>
         </div>
-        <img src="assets/icons/close.svg" onclick="closeModal()" />
+        <img src="assets/icons/close.svg" class="close-modal" />
       </div>
     </div>
     <div id="bottom-infos">
       <div class="totallikes">299 081 Likes</div>
       <div class="dayprice">300€ / jour</div>
     </div>
-    <script src="scripts/utils/contactForm.js"></script>
     <script src="scripts/factories/photographer-details.js"></script>
     <script src="scripts/factories/photographer-gallerie.js"></script>
+    <script src="scripts/factories/modal-media.js"></script>
     <script src="scripts/pages/photographer.js"></script>
+    <script src="scripts/utils/contactForm.js"></script>
   </body>
 </html>

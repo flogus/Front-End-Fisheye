@@ -67,3 +67,15 @@
   div:last-child {
   flex: 0 0 30px;
 }
+
+#media {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  height: 70vh;
+  width: 70vw;
+}
+#media img {
+  object-fit: contain;
+  height: 90%;
+  width: 90%;
+}
