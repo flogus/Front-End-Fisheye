@@ -27,11 +27,8 @@ function mediaDetailFactory(data, photographName) {
     descripLikes.textContent = likes;
 
     const descripHeart = document.createElement("img");
-
     descripHeart.setAttribute("src", "assets/icons/heart.svg");
-    descripHeart.setAttribute("class", "svg-color");
-
-    descripLikes.appendChild(descripHeart);
+    descripHeart.setAttribute("class", "svg-color heart");
 
     // File type
     if (image !== undefined) {
@@ -67,6 +64,7 @@ function mediaDetailFactory(data, photographName) {
 
     descrip.appendChild(descripText);
     descrip.appendChild(descripLikes);
+    descrip.appendChild(descripHeart);
     gallerie.appendChild(descrip);
     return gallerieCard;
   }

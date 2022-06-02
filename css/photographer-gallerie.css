@@ -83,3 +83,7 @@
   filter: brightness(0) saturate(100%) invert(10%) sepia(76%) saturate(5667%)
     hue-rotate(357deg) brightness(82%) contrast(81%);
 }
+.heart {
+  width: 15px;
+  padding-left: 5px;
+}
