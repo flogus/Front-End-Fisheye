@@ -35,11 +35,12 @@ function mediaDetailFactory(data, photographName) {
     if (image !== undefined) {
       const img = document.createElement("img");
       img.src = gallerieImage;
-      img.setAttribute("alt", "Photo : " + title);
 
+      img.setAttribute("alt", "Photo : " + title);
+      console.log(img.width, " - ", img.height);
       const ratio = img.width / img.height;
       let orientationClass = "";
-
+      console.log("ratio", ratio);
       if (ratio == 1) {
         orientationClass = "orientation-square";
       }
