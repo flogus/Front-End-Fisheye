@@ -1,21 +1,21 @@
 function mediaDetailFactory(data, photographName) {
-  const { id, title, image, video, date, price, likes } = data;
+  const { id, title, image, video, likes } = data;
 
   const gallerieImage = `assets/photographers/${photographName}/${image}`;
   const gallerieVideo = `assets/photographers/${photographName}/${video}`;
 
+  // Construction de la gallerie
   function getUserGallerieDOM() {
     const gallerieCard = document.createElement("div");
     gallerieCard.setAttribute("class", "gallerie--card");
+
     const gallerie = document.createElement("div");
-    gallerieCard.appendChild(gallerie);
+    const anchorName = title.toLowerCase().replaceAll(" ", "-");
+    gallerie.setAttribute("id", anchorName);
 
     const imageLink = document.createElement("a");
-    const anchorName = title.toLowerCase().replaceAll(" ", "-");
     imageLink.setAttribute("href", "#" + anchorName);
-    gallerie.setAttribute("id", anchorName);
     imageLink.setAttribute("title", "Ouvrir " + title);
-    gallerie.appendChild(imageLink);
 
     const descrip = document.createElement("div");
     descrip.setAttribute("class", "gallerie--card-description");
@@ -37,7 +37,6 @@ function mediaDetailFactory(data, photographName) {
       const ratio = img.width / img.height;
       let orientationClass = "";
 
-      imageLink.appendChild(img);
       if (ratio == 1) {
         orientationClass = "orientation-square";
       }
@@ -49,6 +48,7 @@ function mediaDetailFactory(data, photographName) {
       }
       imageLink.setAttribute("class", orientationClass);
       imageLink.setAttribute("imageName", photographName + "/" + image);
+      imageLink.appendChild(img);
     }
     if (video !== undefined) {
       const video = document.createElement("video");
@@ -59,6 +59,9 @@ function mediaDetailFactory(data, photographName) {
       video.appendChild(source);
       imageLink.appendChild(video);
     }
+    gallerieCard.appendChild(gallerie);
+
+    gallerie.appendChild(imageLink);
 
     descrip.appendChild(descripText);
     descrip.appendChild(descripLikes);
