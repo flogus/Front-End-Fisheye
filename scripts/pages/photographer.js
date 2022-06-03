@@ -40,12 +40,17 @@ async function displayData(photographers, medias) {
   const urlParams = new URLSearchParams(QueryString);
   const currentPhotographerId = urlParams.get("id");
 
+  let currentPhotographerTotallikes = 0;
+
   photographers.forEach((photographer) => {
-    //console.log("photographer.id", photographer.id);
     photographer.medias = [];
     medias.forEach((media) => {
       if (photographer.id == media.photographerId) {
         photographer.medias.push(media.id);
+        if (media.photographerId == currentPhotographerId) {
+          currentPhotographerTotallikes =
+            currentPhotographerTotallikes + media.likes;
+        }
       }
     });
   });
@@ -53,14 +58,15 @@ async function displayData(photographers, medias) {
   //console.log("newPhotographers", photographers);
   const photographersSection = document.querySelector(".photograph-header");
   const photographersSectionButton = document.querySelector(".contact_button");
-
+  let currentPhotographerPrice = "";
   // Construction du block information du photographe
   photographers.forEach((photographer) => {
     if (photographer.id == currentPhotographerId) {
       const photographerModel = photographerDetailFactory(photographer);
       const userDetailDOM = photographerModel.getUserDetailDOM();
       const userPicture = photographerModel.getUserPictureDOM();
-
+      currentPhotographerPrice = photographer.price;
+      console.log("currentPhotographerPrice", currentPhotographerPrice);
       photographersSection.prepend(userDetailDOM);
       photographersSection.appendChild(userPicture);
     }
@@ -76,17 +82,25 @@ async function displayData(photographers, medias) {
       photographerdGallerie.appendChild(mediaDetail);
     }
   });
+
+  // Bottom infos
+  //bottom-infos-dayprice
+  const bottomInfosTotallikes = document.getElementById(
+    "bottom-infos-totallikes"
+  );
+  bottomInfosTotallikes.textContent = currentPhotographerTotallikes;
+  const bottomInfosDayprice = document.getElementById("bottom-infos-dayprice");
+  bottomInfosDayprice.textContent = currentPhotographerPrice + "€ / jour";
 }
 
 async function init() {
   // Récupère les datas des photographes
   const { photographers } = await getPhotographers();
-  const { medias } = await getMedias();
+  const { medias } = await getMedias("totallikes");
   displayData(photographers, medias);
 
   // gallerie
   const imageLinks = document.querySelectorAll(".gallerie--card a");
-  //console.log("imageLinks : ", imageLinks[0].getAttribute("imagename"));
 
   imageLinks.forEach((link) => {
     link.addEventListener("click", (event) => {

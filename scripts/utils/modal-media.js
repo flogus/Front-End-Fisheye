@@ -14,10 +14,10 @@ function closeModal(target) {
 
 const mediaModal = document.getElementById("media_modal");
 const contactButton = document.getElementById("contact_button");
-console.log("mediaModal", mediaModal);
+//console.log("mediaModal", mediaModal);
 
 const closeButtons = document.querySelectorAll(".close-modal");
-console.log("closeButtons : ", closeButtons);
+//console.log("closeButtons : ", closeButtons);
 
 closeButtons.forEach((btn) => {
   btn.addEventListener("click", (event) => {
@@ -37,7 +37,6 @@ function changeModalImage(imageName) {
 // Fermer une modale avec Escape
 document.onkeydown = function (evt) {
   if (evt.key == "Escape") {
-    console.log("close modal", mediaModal.getAttribute("style").split(":")[1]);
     if ((mediaModal.getAttribute("style").split(":")[1] = "flex")) {
       closeModal("media");
     }
