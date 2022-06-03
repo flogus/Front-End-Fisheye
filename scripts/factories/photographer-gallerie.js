@@ -29,11 +29,14 @@ function mediaDetailFactory(data, photographName) {
     const descripHeart = document.createElement("img");
     descripHeart.setAttribute("src", "assets/icons/heart.svg");
     descripHeart.setAttribute("class", "svg-color heart");
+    descripHeart.setAttribute("alt", likes + "Likes");
 
     // File type
     if (image !== undefined) {
       const img = document.createElement("img");
       img.src = gallerieImage;
+      img.setAttribute("alt", "Photo : " + title);
+
       const ratio = img.width / img.height;
       let orientationClass = "";
 

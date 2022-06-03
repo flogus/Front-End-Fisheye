@@ -77,11 +77,11 @@
   align-items: center;
 }
 .photographer_section article div p:first-child {
-  font-size: 14px;
-  color: #d3573c;
+  font-size: 18px;
+  color: #901c1c;
 }
 .photographer_section article div p {
-  font-size: 10px;
+  font-size: 14px;
   margin: 2px;
 }
 

@@ -12,7 +12,7 @@ function photographerDetailFactory(data) {
   }
   function getUserDetailDOM(id) {
     const article = document.createElement("article");
-    const h2 = document.createElement("h2");
+    const h2 = document.createElement("h1");
     const pCityCountry = document.createElement("p");
     const pTagLine = document.createElement("p");
 

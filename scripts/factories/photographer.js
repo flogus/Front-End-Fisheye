@@ -16,8 +16,7 @@ function photographerFactory(data) {
       picture = "account.png";
     }
     img.setAttribute("src", picture);
-    //console.log("Picture", picture);
-    img.setAttribute("alt", name);
+    img.setAttribute("alt", "Photo de " + name);
 
     const h2 = document.createElement("h2");
     const pCityCountry = document.createElement("p");
