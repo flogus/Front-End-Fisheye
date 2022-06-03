@@ -52,9 +52,7 @@ function mediaDetailFactory(data, photographName) {
     }
     if (video !== undefined) {
       const video = document.createElement("video");
-      //video.setAttribute("controls", "");
       const source = document.createElement("source");
-      //console.log("Video ratio : ", gallerieVideo);
       source.src = gallerieVideo;
       source.type = "video/mp4";
 

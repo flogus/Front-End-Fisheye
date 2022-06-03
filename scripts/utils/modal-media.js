@@ -8,12 +8,6 @@ function displayModal(target, imageName) {
 }
 
 function closeModal(target) {
-  //   if (target == "contact") {
-  //     const modal = document.getElementById("contact_modal");
-  //   }
-  //   if (target == "media") {
-  //     const modal = document.getElementById("media_modal");
-  //   }
   const modal = document.getElementById(target + "_modal");
   modal.style.display = "none";
 }

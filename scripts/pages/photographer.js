@@ -1,13 +1,11 @@
 async function getPhotographers() {
   const photographers = await fetch("./data/photographers.json")
     .then((response) => {
-      //console.log("response photographers", response);
       return response.json();
     })
     .then((data) => {
       // Work with JSON data here
       return data.photographers;
-      //console.log("Json photographers", data);
     })
     .catch((err) => {
       console.log("Erreur fetch photographers");
@@ -37,8 +35,6 @@ async function getMedias() {
   };
 }
 async function displayData(photographers, medias) {
-  // console.log("photographers", photographers);
-  // console.log("medias", medias);
   // Get Id param
   const QueryString = window.location.search;
   const urlParams = new URLSearchParams(QueryString);
@@ -71,15 +67,12 @@ async function displayData(photographers, medias) {
   });
 
   const photographerdGallerie = document.getElementById("photograph-gallerie");
-  //console.log("photographerdGallerie : ", photographerdGallerie);
   const photographName = photographers.name;
 
   medias.forEach((media) => {
     if (media.photographerId == currentPhotographerId) {
       const mediaModel = mediaDetailFactory(media, currentPhotographerId);
       const mediaDetail = mediaModel.getUserGallerieDOM();
-
-      //console.log("photo", media.id);
       photographerdGallerie.appendChild(mediaDetail);
     }
   });
