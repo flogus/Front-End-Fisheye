@@ -49,6 +49,9 @@
   gap: 70px;
   margin-top: 100px;
 }
+.photographer_section div a > img {
+  width: 200px;
+}
 
 .photographer_section article a {
   text-decoration: none;

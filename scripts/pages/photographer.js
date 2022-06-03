@@ -1,3 +1,6 @@
+const globalImagesPath = "assets/images/";
+const globalPhotosPath = "assets/photographers/";
+
 async function getPhotographers() {
   const photographers = await fetch("./data/photographers.json")
     .then((response) => {
@@ -8,7 +11,7 @@ async function getPhotographers() {
       return data.photographers;
     })
     .catch((err) => {
-      console.log("Erreur fetch photographers");
+      console.error("Erreur fetch photographers");
     });
 
   return {
@@ -18,16 +21,14 @@ async function getPhotographers() {
 async function getMedias() {
   const medias = await fetch("./data/photographers.json")
     .then((response) => {
-      //console.log("response media", response);
       return response.json();
     })
     .then((data) => {
       // Work with JSON data here
       return data.media;
-      console.log("Json media", data);
     })
     .catch((err) => {
-      console.log("Erreur fetch media");
+      console.error("Erreur fetch media");
     });
 
   return {
@@ -39,7 +40,7 @@ async function displayData(photographers, medias) {
   const QueryString = window.location.search;
   const urlParams = new URLSearchParams(QueryString);
   const currentPhotographerId = urlParams.get("id");
-
+  console.log("currentPhotographerId", currentPhotographerId);
   let currentPhotographerTotallikes = 0;
 
   photographers.forEach((photographer) => {
@@ -56,19 +57,21 @@ async function displayData(photographers, medias) {
   });
 
   //console.log("newPhotographers", photographers);
-  const photographersSection = document.querySelector(".photograph-header");
+  const photographerInfos = document.getElementById("headerInfos");
+  const photographerPhoto = document.getElementById("headerPhoto");
   const photographersSectionButton = document.querySelector(".contact_button");
   let currentPhotographerPrice = "";
+  let currentPhotographerName = "";
   // Construction du block information du photographe
   photographers.forEach((photographer) => {
     if (photographer.id == currentPhotographerId) {
-      const photographerModel = photographerDetailFactory(photographer);
-      const userDetailDOM = photographerModel.getUserDetailDOM();
-      const userPicture = photographerModel.getUserPictureDOM();
+      const photographerHeaderModel = new PhotographerHeader(photographer);
+      console.log("photographerHeaderModel", photographerHeaderModel);
       currentPhotographerPrice = photographer.price;
       console.log("currentPhotographerPrice", currentPhotographerPrice);
-      photographersSection.prepend(userDetailDOM);
-      photographersSection.appendChild(userPicture);
+      currentPhotographerName = photographer.name;
+      photographerInfos.innerHTML += photographerHeaderModel.headerInfos;
+      photographerPhoto.innerHTML += photographerHeaderModel.headerPhoto;
     }
   });
 
@@ -77,9 +80,9 @@ async function displayData(photographers, medias) {
 
   medias.forEach((media) => {
     if (media.photographerId == currentPhotographerId) {
-      const mediaModel = mediaDetailFactory(media, currentPhotographerId);
-      const mediaDetail = mediaModel.getUserGallerieDOM();
-      photographerdGallerie.appendChild(mediaDetail);
+      media.name = currentPhotographerName;
+      const mediaModel = new PhotographerGallerieBlock(media);
+      photographerdGallerie.innerHTML += mediaModel.gallerieBlock;
     }
   });
 

@@ -1,41 +1,22 @@
-function photographerFactory(data) {
-  const { name, portrait, id, city, country, tagline, price } = data;
+// function photographerFactory(data) {
+//   const { name, portrait, id, city, country, tagline, price } = data;
 
-  const picture = `assets/photographers/${portrait}`;
+//   const picture = `assets/photographers/${portrait}`;
 
-  function getUserCardDOM() {
-    const lien = document.createElement("a");
-    lien.setAttribute("href", "photographer.html?id=" + id);
+//   return { name, picture, getUserCardDOM };
+// }
 
-    const article = document.createElement("article");
-    const divDescription = document.createElement("div");
-
-    const img = document.createElement("img");
-
-    if (picture == undefined) {
-      picture = "account.png";
+class PhotographerFactory {
+  constructor(data, type) {
+    console.log("build ", type, data);
+    if (type === "detail") {
+      return new PhotographerDetail(data);
+    } else if (type === "header") {
+      return new PhotographerHeader(data);
+    } else if (type === "gallerieBlock") {
+      return new PhotographerGallerieBlock(data);
+    } else {
+      throw "Unknown type format";
     }
-    img.setAttribute("src", picture);
-    img.setAttribute("alt", "Photo de " + name);
-
-    const h2 = document.createElement("h2");
-    const pCityCountry = document.createElement("p");
-    const pTagLine = document.createElement("p");
-    const pPrice = document.createElement("p");
-
-    h2.textContent = name;
-    pCityCountry.textContent = city + ", " + country;
-    pTagLine.textContent = tagline;
-    pPrice.textContent = price + "€/jour";
-
-    article.appendChild(lien);
-    article.appendChild(divDescription);
-    lien.appendChild(img);
-    lien.appendChild(h2);
-    divDescription.appendChild(pCityCountry);
-    divDescription.appendChild(pTagLine);
-    divDescription.appendChild(pPrice);
-    return article;
   }
-  return { name, picture, getUserCardDOM };
 }
