@@ -33,3 +33,13 @@ function changeModalImage(imageName) {
     .querySelector("img")
     .setAttribute("src", newSrc);
 }
+
+// Fermer une modale avec Escape
+document.onkeydown = function (evt) {
+  if (evt.key == "Escape") {
+    console.log("close modal", mediaModal.getAttribute("style").split(":")[1]);
+    if ((mediaModal.getAttribute("style").split(":")[1] = "flex")) {
+      closeModal("media");
+    }
+  }
+};
