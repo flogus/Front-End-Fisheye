@@ -87,3 +87,7 @@
   width: 15px;
   padding-left: 5px;
 }
+.svg-black {
+  width: 16px;
+  filter: brightness(0) saturate(100%);
+}

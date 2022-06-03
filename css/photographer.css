@@ -86,11 +86,18 @@
 }
 
 #bottom-infos {
+  width: 300px;
   padding: 10px;
   background-color: #db8876;
   display: flex;
+  justify-content: space-between;
   position: fixed;
   z-index: 1;
   right: 0;
   bottom: 0;
+}
+
+#bottom-infos > div {
+  display: flex;
+  align-items: center;
 }
