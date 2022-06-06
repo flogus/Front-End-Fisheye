@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link href="css/layout-test.css" rel="stylesheet" type="text/css" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/index.css" rel="stylesheet" type="text/css" />
+    <link href="css/filtres-menu.css" rel="stylesheet" type="text/css" />
     <link href="css/modals.css" rel="stylesheet" type="text/css" />
-    <link href="css/photographer-detail.css" rel="stylesheet" type="text/css" />
-    <link
-      href="css/photographer-filtres.css"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="css/filtres.css" rel="stylesheet" type="text/css" />
+    <link href="css/bottom-infos.css" rel="stylesheet" type="text/css" />
     <link
       href="css/photographer-gallerie.css"
       rel="stylesheet"
       type="text/css"
     />
+
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link
@@ -41,16 +38,30 @@
         </button>
         <div id="headerPhoto"></div>
       </div>
-      <div id="navigation">
+      <div id="filtres">
         <span>Trier par</span>
-        <span
-          ><nav>
-            <ul role="menu" aria-label="Filtres">
-              <li role="none"><a role="menuitem" href="/">Popularité</a></li>
-              <li role="none"><a role="menuitem" href="/">Date</a></li>
-              <li role="none"><a role="menuitem" href="/">Titre</a></li>
+        <span>
+
+          <div class="menu-button-links">
+            <button type="button" id="menubutton" aria-haspopup="true" aria-controls="menu2">
+              Filtres
+              <img width="15" src="assets/icons/menu-down.svg"></img>
+
+            </button>
+          
+            <ul id="menu2" role="menu" aria-labelledby="menubutton">
+              <li role="none">
+                <a role="menuitem" href="#">Popularité</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="#">Date</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="#">Titre</a>
+              </li>
             </ul>
-          </nav>
+          </div>
+
         </span>
       </div>
       <div id="photograph-gallerie"></div>
@@ -115,15 +126,19 @@
       </div>
     </div>
     <div id="bottom-infos">
-      <div id="bottom-infos-totallikes" class="totallikes"></div>
-      <img src="assets/icons/heart.svg" class="heart svg-black" alt="Likes" />
+      <div>
+        <div id="bottom-infos-totallikes" class="totallikes"></div>
+        <img src="assets/icons/heart.svg" class="svg-heart" alt="Likes" />
+      </div>
       <div id="bottom-infos-dayprice" class="dayprice"></div>
     </div>
     <script src="scripts/pages/photographer.js"></script>
-    <script src="scripts/factories/photographer.js"></script>
-    <script src="scripts/factories/photographerDetail.js"></script>
+    <script src="scripts/factories/photographerFactory.js"></script>
+    <script src="scripts/factories/photographerDetails.js"></script>
     <script src="scripts/factories/photographerHeader.js"></script>
     <script src="scripts/factories/photographerGallerieBlock.js"></script>
     <script src="scripts/utils/modal-media.js"></script>
+    <script src="scripts/utils/filtres-menu.js"></script>
+    <script src="scripts/utils/likes.js"></script>
   </body>
 </html>

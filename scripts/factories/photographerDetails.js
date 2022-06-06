@@ -3,9 +3,9 @@
  *
  * @param {data}
  */
-class PhotographerDetail {
+class PhotographerDetails {
   constructor(data) {
-    console.log("PhotographerDetail : ", data);
+    // console.log("PhotographerDetail : ", data);
     this._name = data.name;
     this._id = data.id;
     this._city = data.city;
@@ -35,25 +35,25 @@ class PhotographerDetail {
     return this._portrait;
   }
   get detailTemplate() {
-    let template = "<div>";
+    let template = "<article>";
     template +=
       "<a href='photographer.html?id=" +
       this._id +
-      "' title='" +
+      "' title='Voir les photos de " +
       this._name +
       "'>";
     template +=
-      "<img src='assets/photographers/Photographers ID Photos/" +
+      "<img src='assets/photographers/" +
       this._portrait +
-      "' alt='" +
+      "' alt='Photo " +
       this._name +
       "' />";
     template += "</a>";
     template += "<h2>" + this._name + "</h2>";
-    template += "<div>" + this._city + ", " + this._country + "</div>";
-    template += "<div>" + this._tagline + "</div>";
-    template += "<div>" + this._price + "€/jour</div>";
-    template += "</div>";
+    template += "<h3>" + this._city + ", " + this._country + "</h3>";
+    template += "<h4>" + this._tagline + "</h4>";
+    template += "<h5>" + this._price + "€/jour</h5>";
+    template += "</article>";
 
     return template;
   }

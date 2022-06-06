@@ -155,37 +155,4 @@
   border: none;
   border-radius: 5px;
 }
-
-#contact_modal {
-  display: none;
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-}
-
-#contact_modal h2 {
-  font-size: 36px;
-}
-
-#contact_modal label,
-#contact_modal input,
-#contact_modal textarea {
-  font-size: 20px;
-}
-
-#contact_modal input {
-  height: 40px;
-}
-
-#contact_modal textarea {
-  width: 100%;
-}
-
-#contact_modal .photograph-header {
-  background-color: #fafafa;
-  height: 300px;
-}
 /*# sourceMappingURL=modals.css.map */

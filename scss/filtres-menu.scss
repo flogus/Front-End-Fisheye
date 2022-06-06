@@ -1,0 +1,75 @@
+@import "utilities/colors";
+
+#filtres {
+  display: flex;
+  border: 1px solid;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 30px 50px;
+}
+
+.menu-button-links {
+  position: relative;
+  margin: 0 0 0 10px;
+  font-size: 110%;
+  button {
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 100;
+    margin: 0;
+    padding: 6px;
+    display: inline-block;
+    position: relative;
+    background-color: $darkcolor;
+    border: 1px solid $darkcolor;
+    font-size: 0.9em;
+    color: white;
+    border-radius: 5px;
+    &:hover,
+    &:focus,
+    &[aria-expanded="true"] {
+      border: 1px solid $lightcolor;
+      background: $darkcolor;
+      color: #fff;
+      outline: none;
+      margin: 0;
+    }
+  }
+  [role="menu"] {
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 100;
+    margin: 0;
+    padding: 7px 4px;
+    list-style: none;
+    display: none;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    border-radius: 5px;
+    background-color: $darkcolor;
+  }
+  [role="menuitem"],
+  [role="separator"] {
+    text-decoration: none;
+    margin: 0;
+    padding: 6px;
+    display: block;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+  }
+  [role="separator"] {
+    padding-top: 3px;
+    background-image: url("../images/separator.svg");
+    background-position: center;
+    background-repeat: repeat-x;
+  }
+
+  // Focus de l'élément du menu
+  [role="menuitem"]:focus {
+    //border: 2px solid $darkcolor;
+    background: $lightcolor;
+    color: #000;
+  }
+}

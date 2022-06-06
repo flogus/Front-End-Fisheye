@@ -17,10 +17,10 @@ async function getPhotographers() {
 }
 
 async function displayData(photographers) {
-  const photographersSection = document.querySelector(".photographer_section");
+  const photographersSection = document.querySelector(".photographers_details");
 
   photographers.forEach((photographer) => {
-    const photographerModel = new PhotographerFactory(photographer, "detail");
+    const photographerModel = new PhotographerFactory(photographer, "details");
     console.log("photographerModel", photographerModel);
 
     photographersSection.innerHTML += photographerModel.detailTemplate;

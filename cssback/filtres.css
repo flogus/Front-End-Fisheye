@@ -1,23 +1,29 @@
 /* Filtres */
 #navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   font-size: 14px;
 }
+
 #navigation span {
   position: relative;
 }
+
 #navigation span nav {
   position: absolute;
   z-index: 2;
   top: -10px;
   left: 10px;
 }
+
 #navigation span nav ul {
   background-color: #901c1c;
   list-style: none;
   margin: 0;
   padding: 5px;
 }
+
 #navigation span nav ul li a {
   display: block;
   text-decoration: none;
@@ -25,6 +31,8 @@
   color: #ffffff;
   border-bottom: 1px solid #ffffff;
 }
+
 #navigation span nav ul li:last-child a {
   border-bottom: none;
 }
+/*# sourceMappingURL=filtres.css.map */

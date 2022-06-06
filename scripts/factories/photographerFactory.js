@@ -1,16 +1,12 @@
-// function photographerFactory(data) {
-//   const { name, portrait, id, city, country, tagline, price } = data;
-
-//   const picture = `assets/photographers/${portrait}`;
-
-//   return { name, picture, getUserCardDOM };
-// }
-
+/**
+ * Photographer Factory
+ * @type details, header, gallerieBlock
+ */
 class PhotographerFactory {
   constructor(data, type) {
     console.log("build ", type, data);
-    if (type === "detail") {
-      return new PhotographerDetail(data);
+    if (type === "details") {
+      return new PhotographerDetails(data);
     } else if (type === "header") {
       return new PhotographerHeader(data);
     } else if (type === "gallerieBlock") {

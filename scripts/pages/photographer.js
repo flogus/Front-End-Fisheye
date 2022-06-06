@@ -40,7 +40,7 @@ async function displayData(photographers, medias) {
   const QueryString = window.location.search;
   const urlParams = new URLSearchParams(QueryString);
   const currentPhotographerId = urlParams.get("id");
-  console.log("currentPhotographerId", currentPhotographerId);
+  // console.log("currentPhotographerId", currentPhotographerId);
   let currentPhotographerTotallikes = 0;
 
   photographers.forEach((photographer) => {
@@ -66,9 +66,9 @@ async function displayData(photographers, medias) {
   photographers.forEach((photographer) => {
     if (photographer.id == currentPhotographerId) {
       const photographerHeaderModel = new PhotographerHeader(photographer);
-      console.log("photographerHeaderModel", photographerHeaderModel);
+      // console.log("photographerHeaderModel", photographerHeaderModel);
       currentPhotographerPrice = photographer.price;
-      console.log("currentPhotographerPrice", currentPhotographerPrice);
+      // console.log("currentPhotographerPrice", currentPhotographerPrice);
       currentPhotographerName = photographer.name;
       photographerInfos.innerHTML += photographerHeaderModel.headerInfos;
       photographerPhoto.innerHTML += photographerHeaderModel.headerPhoto;
@@ -86,12 +86,35 @@ async function displayData(photographers, medias) {
     }
   });
 
+  // Ajout des clicks sur les likes
+  const allHearts = document.querySelectorAll(
+    "#photograph-gallerie img.svg-heart"
+  );
+  allHearts.forEach((imgheart) => {
+    imgheart.addEventListener("click", function (event) {
+      this.nextSibling.textContent = parseInt(this.getAttribute("value")) + 1;
+      console.log("img click", parseInt(this.getAttribute("value")) + 1);
+
+      const totallikes = document
+        .getElementById("bottom-infos-totallikes")
+        .getAttribute("value");
+      console.log(parseInt(totallikes));
+      const tempTotallikes = parseInt(totallikes) + 1;
+      document.getElementById("bottom-infos-totallikes").textContent =
+        tempTotallikes;
+      document
+        .getElementById("bottom-infos-totallikes")
+        .setAttribute("value", tempTotallikes);
+    });
+  });
+
   // Bottom infos
   //bottom-infos-dayprice
   const bottomInfosTotallikes = document.getElementById(
     "bottom-infos-totallikes"
   );
   bottomInfosTotallikes.textContent = currentPhotographerTotallikes;
+  bottomInfosTotallikes.setAttribute("value", currentPhotographerTotallikes);
   const bottomInfosDayprice = document.getElementById("bottom-infos-dayprice");
   bottomInfosDayprice.textContent = currentPhotographerPrice + "€ / jour";
 }

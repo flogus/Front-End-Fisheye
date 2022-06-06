@@ -6,7 +6,7 @@
  */
 class PhotographerHeader {
   constructor(data) {
-    console.log("PhotographerHeader : ", data);
+    // console.log("PhotographerHeader : ", data);
     this._name = data.name;
     this._portrait = data.portrait;
     this._city = data.city;
@@ -16,7 +16,7 @@ class PhotographerHeader {
   get headerInfos() {
     let template = "<div>";
     template += "<h2>" + this._name + "</h2>";
-    template += "<h3>" + this._city + this._country + "</h3>";
+    template += "<h3>" + this._city + ", " + this._country + "</h3>";
     template += "<h4>" + this._tagline + "</h4>";
     template += "</div>";
 
