@@ -64,7 +64,6 @@
 
 #photograph-gallerie {
   display: flex;
-  justify-content: space-evenly;
   flex-wrap: wrap;
   div {
     &.gallerie--card {
@@ -74,10 +73,16 @@
       align-items: center;
       flex-direction: column;
       margin-bottom: 50px;
+      &:nth-child(3n + 1) {
+        align-items: flex-start;
+      }
+      &:nth-child(3n + 3) {
+        align-items: flex-end;
+      }
       a {
         position: relative;
-        height: 200px;
-        width: 200px;
+        height: 300px;
+        width: 300px;
         overflow: hidden;
         display: flex;
         justify-content: center;
@@ -95,7 +100,7 @@
       }
       video {
         width: auto;
-        height: 200px;
+        height: 300px;
         position: relative;
         border: 3px solid red;
       }
@@ -103,7 +108,7 @@
         &.gallerie--card-description {
           display: flex;
           justify-content: space-between;
-          width: 200px;
+          width: 300px;
           color: #901c1c;
           padding-top: 5px;
           div {
