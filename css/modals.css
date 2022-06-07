@@ -1,13 +1,8 @@
 #media_modal {
-  z-index: 2;
-  position: absolute;
   display: none;
 }
 
 #media_modal .modal {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   position: fixed;
   top: 10%;
   left: 10%;
@@ -17,8 +12,19 @@
   background-color: #ffffff;
 }
 
-#media_modal .modal img {
-  fill: red;
+#media_modal .modal header {
+  position: relative;
+  margin: 0;
+}
+
+#media_modal .modal header img.close-modal {
+  -webkit-filter: brightness(0) saturate(100%) invert(10%) sepia(76%) saturate(5667%) hue-rotate(357deg) brightness(82%) contrast(81%);
+          filter: brightness(0) saturate(100%) invert(10%) sepia(76%) saturate(5667%) hue-rotate(357deg) brightness(82%) contrast(81%);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  cursor: pointer;
 }
 
 #media_modal .modal div {
@@ -36,6 +42,17 @@
       -ms-flex-direction: row;
           flex-direction: row;
   height: 100%;
+  width: 100%;
+}
+
+#media_modal .modal div img {
+  height: 70%;
+  width: auto;
+}
+
+#media_modal .modal div video {
+  height: 50%;
+  width: auto;
 }
 
 #media_modal .modal div div {
@@ -44,14 +61,7 @@
           flex: 0 1 auto;
 }
 
-#media_modal .modal div div:first-child, #media_modal .modal div div:last-child {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 42px;
-          flex: 0 0 42px;
-}
-
-#media_modal .modal div div:first-child a,
-#media_modal .modal div div:last-child a {
+#media_modal .modal div div:first-child a, #media_modal .modal div div:last-child a {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 42px;
           flex: 0 0 42px;
@@ -66,96 +76,7 @@
           filter: brightness(0) saturate(100%) invert(10%) sepia(76%) saturate(5667%) hue-rotate(357deg) brightness(82%) contrast(81%);
 }
 
-#media_modal div.modal > img {
-  -webkit-filter: brightness(0) saturate(100%) invert(10%) sepia(76%) saturate(5667%) hue-rotate(357deg) brightness(82%) contrast(81%);
-          filter: brightness(0) saturate(100%) invert(10%) sepia(76%) saturate(5667%) hue-rotate(357deg) brightness(82%) contrast(81%);
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 30px;
-  cursor: pointer;
-}
-
 /* modal */
-.modal {
-  border-radius: 5px;
-  background-color: #db8876;
-  width: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding: 35px;
-  margin: auto;
-}
-
-.modal header {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  width: 100%;
-}
-
-.modal header img {
-  cursor: pointer;
-}
-
-.modal header h2 {
-  font-size: 64px;
-  font-weight: normal;
-  text-align: center;
-}
-
-.modal header form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-}
-
-.modal header form label {
-  color: #312e2e;
-  font-size: 36px;
-}
-
-.modal header form div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  width: 100%;
-  -webkit-box-align: self-start;
-      -ms-flex-align: self-start;
-          align-items: self-start;
-  margin-bottom: 26px;
-}
-
-.modal header form input {
-  width: 100%;
-  height: 68px;
-  border: none;
-  border-radius: 5px;
-}
-
 #contact_modal {
   display: none;
   position: absolute;
@@ -166,26 +87,25 @@
   left: 0;
 }
 
-#contact_modal h2 {
-  font-size: 36px;
+/*
+  h2 {
+    font-size: 36px;
+  }
+  label,
+  input,
+  textarea {
+    font-size: 20px;
+  }
+  input {
+    height: 40px;
+  }
+  textarea {
+    width: 100%;
+  }
+  .photograph-header {
+    background-color: #fafafa;
+    height: 300px;
+  }
 }
-
-#contact_modal label,
-#contact_modal input,
-#contact_modal textarea {
-  font-size: 20px;
-}
-
-#contact_modal input {
-  height: 40px;
-}
-
-#contact_modal textarea {
-  width: 100%;
-}
-
-#contact_modal .photograph-header {
-  background-color: #fafafa;
-  height: 300px;
-}
+*/
 /*# sourceMappingURL=modals.css.map */
