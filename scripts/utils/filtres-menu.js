@@ -1,6 +1,3 @@
-const filtresMenu = document.getElementById("filtres-menu");
-console.log("filtresMenu", filtresMenu);
-
 /*
  *   This content is licensed according to the W3C Software License at
  *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
@@ -37,6 +34,18 @@ class MenuButtonLinks {
       this.firstChars.push(menuitem.textContent.trim()[0].toLowerCase());
 
       menuitem.addEventListener("keydown", this.onMenuitemKeydown.bind(this));
+      menuitem.addEventListener("click", function () {
+        console.log("I :", this.textContent);
+        if (this.textContent == "Popularité") {
+          document.getElementById("menubutton").setAttribute("tri", "likes");
+        }
+        if (this.textContent == "Date") {
+          document.getElementById("menubutton").setAttribute("tri", "date");
+        }
+        if (this.textContent == "Titre") {
+          document.getElementById("menubutton").setAttribute("tri", "titre");
+        }
+      });
 
       menuitem.addEventListener(
         "mouseover",
@@ -213,6 +222,7 @@ class MenuButtonLinks {
     }
   }
 
+  // Click du bouton Filtres
   onButtonClick(event) {
     if (this.isOpen()) {
       this.closePopup();

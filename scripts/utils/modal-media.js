@@ -1,8 +1,9 @@
-function displayModal(target, imageName) {
+function displayModal(target, mediaName) {
+  console.log("target", target, "mediaName", mediaName);
   const modal = document.getElementById(target + "_modal");
-  if (imageName) {
-    console.log("imageName:", imageName);
-    changeModalImage(imageName);
+  console.log("imageName:", mediaName, " - modal:", modal);
+  if (mediaName) {
+    changeModalImage(mediaName);
   }
   modal.style.display = "flex";
 }
@@ -25,13 +26,27 @@ closeButtons.forEach((btn) => {
   });
 });
 
-function changeModalImage(imageName) {
-  const newSrc = "assets/photographers/" + imageName;
-  console.log("sources :", newSrc);
-  document
-    .getElementById("media")
-    .querySelector("img")
-    .setAttribute("src", newSrc);
+function setPrevNextButtons() {
+  const modalMediaPrev = document.getElementById("modalMediaPrev");
+  const modalMediaNext = document.getElementById("modalMediaNext");
+}
+
+function changeModalImage(mediaName) {
+  console.log("changeModalImage > mediaName", mediaName);
+  const extension = mediaName.split(".")[1];
+  const mediaContainer = document.getElementById("media");
+  if (extension == "mp4") {
+    mediaContainer.querySelector("img").setAttribute("style", "display:none");
+    mediaContainer
+      .querySelector("video")
+      .setAttribute("style", "display:block");
+    mediaContainer.querySelector("source").setAttribute("src", mediaName);
+    console.log("Change video source : ", mediaName);
+  } else {
+    mediaContainer.querySelector("img").setAttribute("style", "display:block");
+    mediaContainer.querySelector("img").setAttribute("src", mediaName);
+    mediaContainer.querySelector("video").setAttribute("style", "display:none");
+  }
 }
 
 // Fermer une modale avec Escape

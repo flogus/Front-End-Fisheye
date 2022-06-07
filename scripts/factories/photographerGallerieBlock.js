@@ -6,15 +6,19 @@
  */
 class PhotographerGallerieBlock {
   constructor(data) {
-    // console.log("PhotographerGallerieBlock : ", data);
+    console.log("PhotographerGallerieBlock : ", data);
     this._title = data.title;
     this._image = data.image;
+    this._date = data.date;
     this._video = data.video;
     this._likes = data.likes;
     this._photoId = data.id;
     this._photographerName = data.name;
   }
-
+  get formatDate() {
+    const dateArray = this._date.split("-");
+    return dateArray[2] + "/" + dateArray[1] + "/" + dateArray[0];
+  }
   get name() {
     return this._photographerName.split(" ")[0];
   }
@@ -34,10 +38,22 @@ class PhotographerGallerieBlock {
       this._video
     );
   }
+  get mediaUrl() {
+    if (this._image !== undefined) {
+      return this.imgUrl;
+    }
+    if (this._video !== undefined) {
+      return this.videoUrl;
+    }
+  }
   get gallerieBlock() {
     let template = "<div class='gallerie--card'>";
-
-    template += "<a href='#' title='Ouvrir " + this._title + "'>";
+    template +=
+      "<a href='#' title='Ouvrir " +
+      this._title +
+      "' mediaName='" +
+      this.mediaUrl +
+      "'>";
     if (this._image !== undefined) {
       template +=
         "<img id='" + this._photoId + "' src='" + this.imgUrl + "' class=''>";
@@ -49,7 +65,10 @@ class PhotographerGallerieBlock {
     }
     template += "</a>";
     template += "<div class='gallerie--card-description'>";
-    template += "<div>" + this._title + "</div>";
+    if (this._video !== undefined) {
+      this._title = "Video - " + this._title;
+    }
+    template += "<div>" + this.formatDate + " - " + this._title + "</div>";
     template +=
       "<div><img class='svg-heart' src='assets/icons/heart.svg' value=" +
       this._likes +

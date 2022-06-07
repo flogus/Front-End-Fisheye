@@ -43,10 +43,9 @@
         <span>
 
           <div class="menu-button-links">
-            <button type="button" id="menubutton" aria-haspopup="true" aria-controls="menu2">
+            <button type="button" id="menubutton" aria-haspopup="true" aria-controls="menu2" tri="likes">
               Filtres
               <img width="15" src="assets/icons/menu-down.svg"></img>
-
             </button>
           
             <ul id="menu2" role="menu" aria-labelledby="menubutton">
@@ -95,9 +94,16 @@
     </div>
     <div id="media_modal">
       <div class="modal">
+        <header>
+          <img
+          src="assets/icons/close.svg"
+          class="close-modal"
+          alt="Fermer la modal"
+        />
+        </header>
         <div>
           <div>
-            <a href="#">
+            <a href="#" id="modalMediaPrev">
               <img
                 src="assets/icons/previous.svg"
                 onclick="previousMedia()"
@@ -107,9 +113,11 @@
           </div>
           <div id="media">
             <img src="" />
+            <video controls style="display: none">
+              <source src="" type="video/mp4"></video>
           </div>
           <div>
-            <a href="#">
+            <a href="#" id="modalMediaNext">
               <img
                 src="assets/icons/next.svg"
                 onclick="nextMedia()"
@@ -118,11 +126,6 @@
             </a>
           </div>
         </div>
-        <img
-          src="assets/icons/close.svg"
-          class="close-modal"
-          alt="Fermer la modal"
-        />
       </div>
     </div>
     <div id="bottom-infos">

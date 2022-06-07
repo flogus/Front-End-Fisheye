@@ -76,14 +76,25 @@ async function displayData(photographers, medias) {
   });
 
   const photographerdGallerie = document.getElementById("photograph-gallerie");
-  const photographName = photographers.name;
+  const triAttr = document.getElementById("menubutton").getAttribute("tri");
 
   medias.forEach((media) => {
-    if (media.photographerId == currentPhotographerId) {
-      media.name = currentPhotographerName;
-      const mediaModel = new PhotographerGallerieBlock(media);
-      photographerdGallerie.innerHTML += mediaModel.gallerieBlock;
+    console.log("medias", medias);
+
+    if (triAttr == "likes") {
+      const imageSorted = medias.sort((a, b) =>
+        a.likes
+          .toString()
+          .localeCompare(b.likes.toString(), "en", { numeric: "true" })
+      );
     }
+    if (triAttr == "date") {
+      const dateSorted = medias.sort((a, b) => a.date.localeCompare(b.date));
+    }
+    if (triAttr == "titre") {
+      const titleSorted = medias.sort((a, b) => a.title.localeCompare(b.title));
+    }
+    buildGallerie(media, currentPhotographerId);
   });
 
   // Ajout des clicks sur les likes
@@ -108,6 +119,15 @@ async function displayData(photographers, medias) {
     });
   });
 
+  function buildGallerie(media, currentPhotographerId) {
+    if (media.photographerId == currentPhotographerId) {
+      media.name = currentPhotographerName;
+
+      const mediaModel = new PhotographerGallerieBlock(media);
+      photographerdGallerie.innerHTML += mediaModel.gallerieBlock;
+    }
+  }
+
   // Bottom infos
   //bottom-infos-dayprice
   const bottomInfosTotallikes = document.getElementById(
@@ -125,12 +145,12 @@ async function init() {
   const { medias } = await getMedias("totallikes");
   displayData(photographers, medias);
 
-  // gallerie
+  // Ajouter les evenements sur les medias pour la lightbox
   const imageLinks = document.querySelectorAll(".gallerie--card a");
 
   imageLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
-      displayModal("media", link.getAttribute("imageName"));
+      displayModal("media", link.getAttribute("mediaName"));
     });
   });
 }
