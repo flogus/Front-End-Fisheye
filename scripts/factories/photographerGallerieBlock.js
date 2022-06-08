@@ -6,7 +6,7 @@
  */
 class PhotographerGallerieBlock {
   constructor(data) {
-    console.log("PhotographerGallerieBlock : ", data);
+    //console.log("PhotographerGallerieBlock : ", data);
     this._title = data.title;
     this._image = data.image;
     this._date = data.date;
@@ -61,7 +61,7 @@ class PhotographerGallerieBlock {
         "<img id='" + this._photoId + "' src='" + this.imgUrl + "' class=''>";
     }
     if (this._video !== undefined) {
-      template += "<video width='200'>";
+      template += "<video width='100%' height='100%'>";
       template += "<source src=" + this.videoUrl + " type='video/mp4'>";
       template += "</video>";
     }

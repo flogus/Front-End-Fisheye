@@ -21,8 +21,7 @@ async function displayData(photographers) {
 
   photographers.forEach((photographer) => {
     const photographerModel = new PhotographerFactory(photographer, "details");
-    console.log("photographerModel", photographerModel);
-
+    //console.log("photographerModel", photographerModel);
     photographersSection.innerHTML += photographerModel.detailTemplate;
   });
 }

@@ -72,7 +72,7 @@ function setPrevNextButtons(mediaNamePrev, mediaNameNext) {
 }
 
 function changeModalImage(mediaName) {
-  console.log("changeModalImage > mediaName", mediaName);
+  //console.log("changeModalImage > mediaName", mediaName);
   const extension = mediaName.split(".")[1];
   const mediaContainer = document.getElementById("media");
   if (extension == "mp4") {
@@ -81,7 +81,7 @@ function changeModalImage(mediaName) {
       .querySelector("video")
       .setAttribute("style", "display:block");
     mediaContainer.querySelector("source").setAttribute("src", mediaName);
-    console.log("Change video source : ", mediaName);
+    //console.log("Change video source : ", mediaName);
   } else {
     mediaContainer.querySelector("img").setAttribute("style", "display:block");
     mediaContainer.querySelector("img").setAttribute("src", mediaName);

@@ -105,12 +105,10 @@ async function displayData(photographers, medias) {
   allHearts.forEach((imgheart) => {
     imgheart.addEventListener("click", function (event) {
       this.nextSibling.textContent = parseInt(this.getAttribute("value")) + 1;
-      console.log("img click", parseInt(this.getAttribute("value")) + 1);
 
       const totallikes = document
         .getElementById("bottom-infos-totallikes")
         .getAttribute("value");
-      console.log(parseInt(totallikes));
       const tempTotallikes = parseInt(totallikes) + 1;
       document.getElementById("bottom-infos-totallikes").textContent =
         tempTotallikes;
@@ -136,7 +134,8 @@ async function displayData(photographers, medias) {
   const mediaListAttr = document
     .getElementById("media_modal")
     .setAttribute("data-mediaList", mediaList);
-  console.log("mediaList", mediaList);
+  //console.log("mediaList", mediaList);
+
   // Bottom infos
   //bottom-infos-dayprice
   const bottomInfosTotallikes = document.getElementById(

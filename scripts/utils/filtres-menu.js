@@ -35,7 +35,7 @@ class MenuButtonLinks {
 
       menuitem.addEventListener("keydown", this.onMenuitemKeydown.bind(this));
       menuitem.addEventListener("click", function () {
-        console.log("I :", this.textContent);
+        //console.log("I :", this.textContent);
         if (this.textContent == "Popularité") {
           document.getElementById("menubutton").setAttribute("tri", "likes");
           buildGallerie(media, currentPhotographerId);
