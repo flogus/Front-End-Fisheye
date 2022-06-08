@@ -5,6 +5,7 @@ function displayModal(target, mediaName) {
   }
   modal.style.display = "flex";
   buildLinksPrevNext(mediaName);
+  escapeCloseModal();
 }
 
 function buildLinksPrevNext(mediaName) {
@@ -91,10 +92,18 @@ function changeModalImage(mediaName) {
 }
 
 // Fermer une modale avec Escape
-document.onkeydown = function (evt) {
-  if (evt.key == "Escape") {
-    if ((mediaModal.getAttribute("style").split(":")[1] = "flex")) {
-      closeModal("media");
+function escapeCloseModal() {
+  document.onkeydown = function (evt) {
+    if (evt.key == "Escape") {
+      if (
+        document
+          .getElementById("media_modal")
+          .getAttribute("style")
+          .split(":")[1]
+          .trim() == "flex;"
+      ) {
+        closeModal("media");
+      }
     }
-  }
-};
+  };
+}
