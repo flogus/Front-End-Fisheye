@@ -1,11 +1,11 @@
 function displayModal(target, mediaName) {
   const modal = document.getElementById(target + "_modal");
+  modal.style.display = "flex";
   if (mediaName) {
     changeModalImage(mediaName);
+    buildLinksPrevNext(mediaName);
+    escapeCloseModal();
   }
-  modal.style.display = "flex";
-  buildLinksPrevNext(mediaName);
-  escapeCloseModal();
 }
 
 function buildLinksPrevNext(mediaName) {
@@ -43,12 +43,12 @@ function closeModal(target) {
 }
 
 const mediaModal = document.getElementById("media_modal");
-const contactButton = document.getElementById("contact_button");
 const closeButtons = document.querySelectorAll(".close-modal");
 
 closeButtons.forEach((btn) => {
   btn.addEventListener("click", (event) => {
     closeModal("media");
+    closeModal("contact");
   });
 });
 
@@ -107,3 +107,8 @@ function escapeCloseModal() {
     }
   };
 }
+
+const contactButton = document.getElementById("contact_button");
+contactButton.addEventListener("click", function () {
+  displayModal("contact", "");
+});

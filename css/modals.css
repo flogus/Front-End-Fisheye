@@ -95,36 +95,81 @@
           filter: brightness(0) saturate(100%) invert(10%) sepia(76%) saturate(5667%) hue-rotate(357deg) brightness(82%) contrast(81%);
 }
 
-/* modal */
 #contact_modal {
   display: none;
-  position: absolute;
-  z-index: 2;
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+  position: fixed;
   top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
 }
 
-/*
-  h2 {
-    font-size: 36px;
-  }
-  label,
-  input,
-  textarea {
-    font-size: 20px;
-  }
-  input {
-    height: 40px;
-  }
-  textarea {
-    width: 100%;
-  }
-  .photograph-header {
-    background-color: #fafafa;
-    height: 300px;
-  }
+#contact_modal .modal {
+  position: fixed;
+  top: 20%;
+  left: 25%;
+  right: 25%;
+  width: auto;
+  height: 60%;
+  padding: 0;
+  background-color: #db8876;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-*/
+
+#contact_modal .modal header {
+  position: relative;
+  padding: 30px 0;
+  width: 100%;
+  margin: 0;
+}
+
+#contact_modal .modal header h2 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 30px;
+  margin: 0;
+}
+
+#contact_modal .modal header img {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+}
+
+#contact_modal .modal form {
+  font-family: "DM Sans", sans-serif;
+}
+
+#contact_modal .modal form div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 5px 0;
+}
+
+#contact_modal .modal form label,
+#contact_modal .modal form input,
+#contact_modal .modal form textarea {
+  font-size: 20px;
+}
+
+#contact_modal .modal form textarea {
+  width: 100%;
+}
 /*# sourceMappingURL=modals.css.map */
