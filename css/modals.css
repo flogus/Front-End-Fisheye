@@ -61,6 +61,12 @@
           flex: 0 1 auto;
 }
 
+#media_modal .modal div div:first-child, #media_modal .modal div div:last-child {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 42px;
+          flex: 0 0 42px;
+}
+
 #media_modal .modal div div:first-child a, #media_modal .modal div div:last-child a {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 42px;
