@@ -68,8 +68,8 @@
   div {
     &.gallerie--card {
       flex: 0 0 33%;
-      justify-content: center;
       display: flex;
+      justify-content: flex-start;
       align-items: center;
       flex-direction: column;
       margin-bottom: 50px;
@@ -156,6 +156,12 @@
     flex-direction: column;
     div.gallerie--card {
       flex: 0 0 100%;
+      &:nth-child(3n + 1) {
+        align-items: center;
+      }
+      &:nth-child(3n + 3) {
+        align-items: center;
+      }
     }
   }
 }
@@ -187,6 +193,12 @@
     flex-direction: row;
     div.gallerie--card {
       flex: 0 0 50%;
+      &:nth-child(3n + 1) {
+        align-items: center;
+      }
+      &:nth-child(3n + 3) {
+        align-items: center;
+      }
     }
   }
 }
