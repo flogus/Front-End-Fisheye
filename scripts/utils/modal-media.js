@@ -1,7 +1,5 @@
 function displayModal(target, mediaName) {
-  console.log("target", target, "mediaName", mediaName);
   const modal = document.getElementById(target + "_modal");
-  console.log("imageName:", mediaName, " - modal:", modal);
   if (mediaName) {
     changeModalImage(mediaName);
   }
@@ -27,7 +25,11 @@ function buildLinksPrevNext(mediaName) {
   if (nextIndex == mediaListArray.length) {
     nextIndex = 0;
   }
-  console.log("currentIndex", currentIndex);
+  // Change modal title
+  document.querySelector(".modal h3").innerText = document
+    .querySelectorAll(".gallerie--card a")
+    [currentIndex].getAttribute("mediatitle");
+
   setPrevNextButtons(
     currentPhotographerName + "/" + mediaListArray[prevIndex],
     currentPhotographerName + "/" + mediaListArray[nextIndex]

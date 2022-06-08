@@ -53,6 +53,8 @@ class PhotographerGallerieBlock {
       this._title +
       "' mediaName='" +
       this.mediaUrl +
+      "' mediaTitle='" +
+      this._title +
       "'>";
     if (this._image !== undefined) {
       template +=
