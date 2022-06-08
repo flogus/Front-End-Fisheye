@@ -19,9 +19,18 @@ function buildLinksPrevNext(mediaName) {
   const currentIndex = mediaListArray.findIndex(
     (element) => element == currentMediaName
   );
+  let prevIndex = currentIndex - 1;
+  let nextIndex = currentIndex + 1;
+  if (currentIndex == 0) {
+    prevIndex = mediaListArray.length - 1;
+  }
+  if (nextIndex == mediaListArray.length) {
+    nextIndex = 0;
+  }
+  console.log("currentIndex", currentIndex);
   setPrevNextButtons(
-    currentPhotographerName + "/" + mediaListArray[currentIndex - 1],
-    currentPhotographerName + "/" + mediaListArray[currentIndex + 1]
+    currentPhotographerName + "/" + mediaListArray[prevIndex],
+    currentPhotographerName + "/" + mediaListArray[nextIndex]
   );
 }
 
