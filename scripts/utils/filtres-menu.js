@@ -38,12 +38,15 @@ class MenuButtonLinks {
         console.log("I :", this.textContent);
         if (this.textContent == "Popularité") {
           document.getElementById("menubutton").setAttribute("tri", "likes");
+          buildGallerie(media, currentPhotographerId);
         }
         if (this.textContent == "Date") {
           document.getElementById("menubutton").setAttribute("tri", "date");
+          buildGallerie(media, currentPhotographerId);
         }
         if (this.textContent == "Titre") {
           document.getElementById("menubutton").setAttribute("tri", "titre");
+          buildGallerie(media, currentPhotographerId);
         }
       });
 

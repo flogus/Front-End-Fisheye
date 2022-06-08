@@ -70,16 +70,17 @@ async function displayData(photographers, medias) {
       currentPhotographerPrice = photographer.price;
       // console.log("currentPhotographerPrice", currentPhotographerPrice);
       currentPhotographerName = photographer.name;
-      photographerInfos.innerHTML += photographerHeaderModel.headerInfos;
-      photographerPhoto.innerHTML += photographerHeaderModel.headerPhoto;
+      photographerInfos.innerHTML = photographerHeaderModel.headerInfos;
+      photographerPhoto.innerHTML = photographerHeaderModel.headerPhoto;
     }
   });
 
   const photographerdGallerie = document.getElementById("photograph-gallerie");
   const triAttr = document.getElementById("menubutton").getAttribute("tri");
+  const mediaList = Array();
 
   medias.forEach((media) => {
-    console.log("medias", medias);
+    //console.log("medias", medias);
 
     if (triAttr == "likes") {
       const imageSorted = medias.sort((a, b) =>
@@ -122,12 +123,20 @@ async function displayData(photographers, medias) {
   function buildGallerie(media, currentPhotographerId) {
     if (media.photographerId == currentPhotographerId) {
       media.name = currentPhotographerName;
-
+      if (media.image !== undefined) {
+        mediaList.push(media.image);
+      }
+      if (media.video !== undefined) {
+        mediaList.push(media.video);
+      }
       const mediaModel = new PhotographerGallerieBlock(media);
       photographerdGallerie.innerHTML += mediaModel.gallerieBlock;
     }
   }
-
+  const mediaListAttr = document
+    .getElementById("media_modal")
+    .setAttribute("data-mediaList", mediaList);
+  console.log("mediaList", mediaList);
   // Bottom infos
   //bottom-infos-dayprice
   const bottomInfosTotallikes = document.getElementById(
@@ -139,12 +148,7 @@ async function displayData(photographers, medias) {
   bottomInfosDayprice.textContent = currentPhotographerPrice + "€ / jour";
 }
 
-async function init() {
-  // Récupère les datas des photographes
-  const { photographers } = await getPhotographers();
-  const { medias } = await getMedias("totallikes");
-  displayData(photographers, medias);
-
+async function addLightBoxLink() {
   // Ajouter les evenements sur les medias pour la lightbox
   const imageLinks = document.querySelectorAll(".gallerie--card a");
 
@@ -153,6 +157,14 @@ async function init() {
       displayModal("media", link.getAttribute("mediaName"));
     });
   });
+}
+async function init() {
+  // Récupère les datas des photographes
+  const { photographers } = await getPhotographers();
+  const { medias } = await getMedias("totallikes");
+  displayData(photographers, medias);
+
+  addLightBoxLink();
 }
 
 init();

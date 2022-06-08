@@ -6,6 +6,23 @@ function displayModal(target, mediaName) {
     changeModalImage(mediaName);
   }
   modal.style.display = "flex";
+  buildLinksPrevNext(mediaName);
+}
+
+function buildLinksPrevNext(mediaName) {
+  const currentMediaName = mediaName.split("/").pop();
+  const currentPhotographerName = mediaName.split("/").at(-2);
+
+  const mediaModalId = document.getElementById("media_modal");
+  const mediaListString = mediaModalId.getAttribute("data-medialist");
+  let mediaListArray = mediaListString.split(",");
+  const currentIndex = mediaListArray.findIndex(
+    (element) => element == currentMediaName
+  );
+  setPrevNextButtons(
+    currentPhotographerName + "/" + mediaListArray[currentIndex - 1],
+    currentPhotographerName + "/" + mediaListArray[currentIndex + 1]
+  );
 }
 
 function closeModal(target) {
@@ -15,10 +32,7 @@ function closeModal(target) {
 
 const mediaModal = document.getElementById("media_modal");
 const contactButton = document.getElementById("contact_button");
-//console.log("mediaModal", mediaModal);
-
 const closeButtons = document.querySelectorAll(".close-modal");
-//console.log("closeButtons : ", closeButtons);
 
 closeButtons.forEach((btn) => {
   btn.addEventListener("click", (event) => {
@@ -26,9 +40,24 @@ closeButtons.forEach((btn) => {
   });
 });
 
-function setPrevNextButtons() {
+function setPrevNextButtons(mediaNamePrev, mediaNameNext) {
   const modalMediaPrev = document.getElementById("modalMediaPrev");
+  modalMediaPrev.addEventListener("click", function () {
+    changeModalImage(globalPhotosPath + mediaNamePrev);
+  });
+
   const modalMediaNext = document.getElementById("modalMediaNext");
+  modalMediaNext.addEventListener("click", function () {
+    changeModalImage(globalPhotosPath + mediaNameNext);
+  });
+  document.onkeydown = function (evt) {
+    if (evt.key == "ArrowLeft") {
+      changeModalImage(globalPhotosPath + mediaNamePrev);
+    }
+    if (evt.key == "ArrowRight") {
+      changeModalImage(globalPhotosPath + mediaNameNext);
+    }
+  };
 }
 
 function changeModalImage(mediaName) {
@@ -47,6 +76,7 @@ function changeModalImage(mediaName) {
     mediaContainer.querySelector("img").setAttribute("src", mediaName);
     mediaContainer.querySelector("video").setAttribute("style", "display:none");
   }
+  buildLinksPrevNext(mediaName);
 }
 
 // Fermer une modale avec Escape
