@@ -4,7 +4,7 @@
  */
 class PhotographerFactory {
   constructor(data, type) {
-    console.log("build ", type, data);
+    //console.log("build ", type, data);
     if (type === "details") {
       return new PhotographerDetails(data);
     } else if (type === "header") {
