@@ -42,18 +42,6 @@ function buildLinksPrevNext(mediaName) {
   );
 }
 
-function closeModal(target) {
-  const modal = document.getElementById(target + "_modal");
-  modal.style.display = "none";
-}
-
-closeButtons.forEach((btn) => {
-  btn.addEventListener("click", (event) => {
-    closeModal("media");
-    closeModal("contact");
-  });
-});
-
 function setPrevNextButtons(mediaNamePrev, mediaNameNext) {
   console.log("setPrevNextButtons", mediaNamePrev, mediaNameNext);
   const modalMediaPrev = document.getElementById("modalMediaPrev");
@@ -95,23 +83,6 @@ function changeModalImage(mediaName) {
     mediaContainer.querySelector("video").setAttribute("style", "display:none");
   }
   buildLinksPrevNext(mediaName);
-}
-
-// Fermer une modale avec Escape
-function escapeCloseModal() {
-  document.onkeydown = function (evt) {
-    if (evt.key == "Escape") {
-      if (
-        document
-          .getElementById("media_modal")
-          .getAttribute("style")
-          .split(":")[1]
-          .trim() == "flex;"
-      ) {
-        closeModal("media");
-      }
-    }
-  };
 }
 
 const contactButton = document.getElementById("contact_button");
