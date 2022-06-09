@@ -48,8 +48,8 @@
 }
 
 #media_modal .modal div img {
-  height: 70%;
-  width: auto;
+  height: auto;
+  width: 60%;
 }
 
 #media_modal .modal div video {
