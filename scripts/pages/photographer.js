@@ -76,7 +76,9 @@ async function displayData(photographers, medias) {
   });
 
   const photographerdGallerie = document.getElementById("photograph-gallerie");
-  const triAttr = document.getElementById("menubutton").getAttribute("tri");
+  const triAttr = document
+    .getElementById("menubutton")
+    .getAttribute("data-tri");
   const mediaList = Array();
 
   medias.forEach((media) => {

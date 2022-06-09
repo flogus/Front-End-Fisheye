@@ -37,15 +37,21 @@ class MenuButtonLinks {
       menuitem.addEventListener("click", function () {
         //console.log("I :", this.textContent);
         if (this.textContent == "Popularité") {
-          document.getElementById("menubutton").setAttribute("tri", "likes");
+          document
+            .getElementById("menubutton")
+            .setAttribute("data-tri", "likes");
           buildGallerie(media, currentPhotographerId);
         }
         if (this.textContent == "Date") {
-          document.getElementById("menubutton").setAttribute("tri", "date");
+          document
+            .getElementById("menubutton")
+            .setAttribute("data-tri", "date");
           buildGallerie(media, currentPhotographerId);
         }
         if (this.textContent == "Titre") {
-          document.getElementById("menubutton").setAttribute("tri", "titre");
+          document
+            .getElementById("menubutton")
+            .setAttribute("data-tri", "titre");
           buildGallerie(media, currentPhotographerId);
         }
       });
