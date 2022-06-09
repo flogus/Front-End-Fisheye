@@ -58,7 +58,13 @@ class PhotographerGallerieBlock {
       "'>";
     if (this._image !== undefined) {
       template +=
-        "<img id='" + this._photoId + "' src='" + this.imgUrl + "' class=''>";
+        "<img id='" +
+        this._photoId +
+        "' src='" +
+        this.imgUrl +
+        "' class='' alt='" +
+        this._title +
+        "'>";
     }
     if (this._video !== undefined) {
       template += "<video width='100%' height='100%'>";
@@ -72,7 +78,7 @@ class PhotographerGallerieBlock {
     }
     template += "<div>" + this.formatDate + " - " + this._title + "</div>";
     template +=
-      "<div><img class='svg-heart' src='assets/icons/heart.svg' value=" +
+      "<div><img class='svg-heart' src='assets/icons/heart.svg' alt='Add a like' value=" +
       this._likes +
       " />" +
       this._likes +

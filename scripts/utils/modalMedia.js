@@ -86,6 +86,7 @@ function changeModalImage(mediaName) {
   } else {
     mediaContainer.querySelector("img").setAttribute("style", "display:block");
     mediaContainer.querySelector("img").setAttribute("src", mediaName);
+    mediaContainer.querySelector("img").setAttribute("alt", mediaName);
     mediaContainer.querySelector("video").setAttribute("style", "display:none");
   }
   buildLinksPrevNext(mediaName);
