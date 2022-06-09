@@ -35,10 +35,14 @@
       img {
         height: auto;
         width: 60%;
+        aspect-ratio: 1;
+        object-fit: scale-down;
       }
       video {
         height: 50%;
         width: auto;
+        aspect-ratio: 1;
+        object-fit: scale-down;
       }
       div {
         flex: 0 1 auto;

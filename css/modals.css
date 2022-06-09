@@ -50,11 +50,17 @@
 #media_modal .modal div img {
   height: auto;
   width: 60%;
+  aspect-ratio: 1;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
 }
 
 #media_modal .modal div video {
   height: 50%;
   width: auto;
+  aspect-ratio: 1;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
 }
 
 #media_modal .modal div div {
