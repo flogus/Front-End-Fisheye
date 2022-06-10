@@ -1,7 +1,7 @@
 const mediaModal = document.getElementById("media_modal");
 
 function displayModal(target, mediaName) {
-  console.log("displayModal", target, mediaName);
+  // console.log("displayModal", target, mediaName);
   const modal = document.getElementById(target + "_modal");
   modal.style.display = "flex";
   if (mediaName) {
@@ -11,7 +11,7 @@ function displayModal(target, mediaName) {
 }
 
 function buildLinksPrevNext(mediaName) {
-  console.log("buildLinksPrevNext", mediaName);
+  // console.log("buildLinksPrevNext", mediaName);
   const currentMediaName = mediaName.split("/").pop();
   const currentPhotographerName = mediaName.split("/").at(-2);
 
@@ -41,7 +41,7 @@ function buildLinksPrevNext(mediaName) {
 }
 
 function setPrevNextButtons(mediaNamePrev, mediaNameNext) {
-  console.log("setPrevNextButtons", mediaNamePrev, mediaNameNext);
+  // console.log("setPrevNextButtons", mediaNamePrev, mediaNameNext);
   const modalMediaPrev = document.getElementById("modalMediaPrev");
   modalMediaPrev.addEventListener("click", function () {
     changeModalImage(globalPhotosPath + mediaNamePrev);
@@ -53,11 +53,11 @@ function setPrevNextButtons(mediaNamePrev, mediaNameNext) {
   });
   document.onkeydown = function (evt) {
     if (evt.key == "ArrowLeft") {
-      console.log("ArrowLeft");
+      // console.log("ArrowLeft");
       changeModalImage(globalPhotosPath + mediaNamePrev);
     }
     if (evt.key == "ArrowRight") {
-      console.log("ArrowRight");
+      // console.log("ArrowRight");
       changeModalImage(globalPhotosPath + mediaNameNext);
     }
   };
