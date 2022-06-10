@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,qBAAqB,CAAC,OAAO,CAAC,GAAG,CAAC;EAChC,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,MAAM;CACpB;;AACD,AAAA,qBAAqB,CAAC,OAAO,CAAC,GAAG,CAAC,CAAC,AAAA,YAAY,CAAC;EAC9C,SAAS,EAAE,IAAI;EACf,KAAK,EAAE,OAAO;CACf;;AACD,AAAA,qBAAqB,CAAC,OAAO,CAAC,GAAG,CAAC,CAAC,CAAC;EAClC,SAAS,EAAE,IAAI;EACf,MAAM,EAAE,GAAG;CACZ",
-    "sources": [
-        "../scss/photographer-details.scss"
-    ],
-    "names": [],
-    "file": "photographer-details.css"
-}
