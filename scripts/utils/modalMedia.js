@@ -1,5 +1,4 @@
 const mediaModal = document.getElementById("media_modal");
-const closeButtons = document.querySelectorAll(".close-modal");
 
 function displayModal(target, mediaName) {
   console.log("displayModal", target, mediaName);
@@ -7,7 +6,6 @@ function displayModal(target, mediaName) {
   modal.style.display = "flex";
   if (mediaName) {
     changeModalImage(mediaName);
-    //buildLinksPrevNext(mediaName);
   }
   escapeCloseModal();
 }

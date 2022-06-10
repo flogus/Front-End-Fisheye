@@ -1,3 +1,5 @@
+const closeButtons = document.querySelectorAll(".close-modal");
+
 // Fermer une modale avec Escape
 function escapeCloseModal() {
   document.onkeydown = function (evt) {
