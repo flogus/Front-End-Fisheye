@@ -35,9 +35,15 @@ async function getMedias() {
     medias,
   };
 }
+
+/**
+ * Get the list of medias for a photographer based of the photographerId
+ * @param {*} photographerId
+ * @returns
+ */
 async function getMediasOfPhotographer(photographerId) {
   const allMedias = getMedias();
-  const mediasOfPhotographer = {};
+  const mediasOfPhotographer = [];
   console.log(typeof mediasOfPhotographer);
   console.log(
     "allMedias:",
@@ -45,13 +51,13 @@ async function getMediasOfPhotographer(photographerId) {
     (await allMedias).medias[0]
   );
 
-  for (const [key, value] of Object.entries((await allMedias).medias)) {
+  for (const [value] of Object.entries((await allMedias).medias)) {
     if ((await value.photographerId) == photographerId) {
-      //mediasOfPhotographer.assign(await value);
-      console.log(key, ">", await value.photographerId);
+      mediasOfPhotographer.push(await value);
+      console.log(await value.photographerId);
     }
   }
-  console.log("mediasOfPhotographer:", mediasOfPhotographer);
+  console.log("mediasOfPhotographer:", typeof mediasOfPhotographer);
   return mediasOfPhotographer;
 }
 
@@ -175,7 +181,7 @@ async function addLightBoxLink() {
 
   imageLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
-      displayModal("media", link.getAttribute("mediaName"));
+      openModal("media");
     });
   });
 }

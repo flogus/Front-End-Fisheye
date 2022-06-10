@@ -1,17 +1,11 @@
 const mediaModal = document.getElementById("media_modal");
 
-function displayModal(target, mediaName) {
-  // console.log("displayModal", target, mediaName);
+function openModal(target) {
   const modal = document.getElementById(target + "_modal");
   modal.style.display = "flex";
-  if (mediaName) {
-    changeModalImage(mediaName);
-  }
-  escapeCloseModal();
 }
 
 function buildLinksPrevNext(mediaName) {
-  // console.log("buildLinksPrevNext", mediaName);
   const currentMediaName = mediaName.split("/").pop();
   const currentPhotographerName = mediaName.split("/").at(-2);
 
