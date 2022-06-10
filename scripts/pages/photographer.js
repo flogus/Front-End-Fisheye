@@ -35,6 +35,26 @@ async function getMedias() {
     medias,
   };
 }
+async function getMediasOfPhotographer(photographerId) {
+  const allMedias = getMedias();
+  const mediasOfPhotographer = {};
+  console.log(typeof mediasOfPhotographer);
+  console.log(
+    "allMedias:",
+    (await allMedias).medias,
+    (await allMedias).medias[0]
+  );
+
+  for (const [key, value] of Object.entries((await allMedias).medias)) {
+    if ((await value.photographerId) == photographerId) {
+      //mediasOfPhotographer.assign(await value);
+      console.log(key, ">", await value.photographerId);
+    }
+  }
+  console.log("mediasOfPhotographer:", mediasOfPhotographer);
+  return mediasOfPhotographer;
+}
+
 async function displayData(photographers, medias) {
   // Get Id param
   const QueryString = window.location.search;
