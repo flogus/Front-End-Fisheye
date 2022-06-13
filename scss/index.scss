@@ -1,5 +1,11 @@
 @import "utilities/colors";
 @import "utilities/reponsive";
+@import "modules/bottom-infos.scss";
+@import "modules/modals.scss";
+@import "modules/photographer-details.scss";
+@import "modules/photographer-gallerie.scss";
+@import "modules/select.scss";
+
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
