@@ -5,19 +5,20 @@
  * @returns
  */
 class PhotographerGallerieBlock {
-  constructor(data) {
-    //console.log("PhotographerGallerieBlock : ", data);
+  constructor(data, currentPhotographerName) {
+    console.log("PhotographerGallerieBlock : ", data);
     this._title = data.title;
     this._image = data.image;
     this._date = data.date;
     this._video = data.video;
     this._likes = data.likes;
     this._photoId = data.id;
-    this._photographerName = data.name;
+    this._photographerName = currentPhotographerName;
   }
   get formatDate() {
-    const dateArray = this._date.split("-");
-    return dateArray[2] + "/" + dateArray[1] + "/" + dateArray[0];
+    // const dateArray = this._date.split("-");
+    // return dateArray[2] + "/" + dateArray[1] + "/" + dateArray[0];
+    return this._date;
   }
   get name() {
     return this._photographerName.split(" ")[0];
