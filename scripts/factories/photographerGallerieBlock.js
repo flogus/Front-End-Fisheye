@@ -6,7 +6,7 @@
  */
 class PhotographerGallerieBlock {
   constructor(data, currentPhotographerName) {
-    console.log("PhotographerGallerieBlock : ", data);
+    // console.log("PhotographerGallerieBlock : ", data);
     this._title = data.title;
     this._image = data.image;
     this._date = data.date;
@@ -16,9 +16,8 @@ class PhotographerGallerieBlock {
     this._photographerName = currentPhotographerName;
   }
   get formatDate() {
-    // const dateArray = this._date.split("-");
-    // return dateArray[2] + "/" + dateArray[1] + "/" + dateArray[0];
-    return this._date;
+    const dateArray = this._date.split("-");
+    return dateArray[2] + "/" + dateArray[1] + "/" + dateArray[0];
   }
   get name() {
     return this._photographerName.split(" ")[0];
@@ -75,7 +74,7 @@ class PhotographerGallerieBlock {
     template += "</a>";
     template += "<div class='gallerie--card-description'>";
     if (this._video !== undefined) {
-      this._title = "Video - " + this._title;
+      this._title = "VIDEO - " + this._title;
     }
     template += "<div>" + this.formatDate + " - " + this._title + "</div>";
     template +=

@@ -1,0 +1,9 @@
+@import "utilities/colors";
+select {
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  background-color: $darkcolor;
+  color: #ffffff;
+  padding: 5px;
+  border-radius: 5px;
+}

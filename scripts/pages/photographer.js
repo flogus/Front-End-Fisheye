@@ -146,12 +146,6 @@ async function displayData(photographers, medias) {
   }
 
   function buildGallerieBlock(media) {
-    /*if (media.image !== undefined) {
-      mediaList.push(media.image);
-    }
-    if (media.video !== undefined) {
-      mediaList.push(media.video);
-    }*/
     const mediaModel = new PhotographerGallerieBlock(
       media,
       currentPhotographerName
@@ -163,27 +157,35 @@ async function displayData(photographers, medias) {
   // buildGallerie();
 
   const currentMedia = await getMediasOfPhotographer();
-  //console.log("currentMedia", currentMedia);
 
-  Object.values(currentMedia).forEach((currentMedia) => {
-    buildGallerieBlock(currentMedia);
-  });
-  /*
-
-    if (triAttr == "likes") {
-      const imageSorted = medias.sort((a, b) =>
+  function generateGallerie(currentMedia) {
+    const currentSelectedtri =
+      document.getElementById("selectFiltres").dataset.selectedtri;
+    if (currentSelectedtri == "likes") {
+      console.log("tri likes");
+      const imageSorted = currentMedia.sort((a, b) =>
         a.likes
           .toString()
           .localeCompare(b.likes.toString(), "en", { numeric: "true" })
       );
     }
-    if (triAttr == "date") {
-      const dateSorted = medias.sort((a, b) => a.date.localeCompare(b.date));
+    if (currentSelectedtri == "date") {
+      console.log("tri date");
+      const dateSorted = currentMedia.sort((a, b) =>
+        a.date.localeCompare(b.date)
+      );
     }
-    if (triAttr == "titre") {
-      const titleSorted = medias.sort((a, b) => a.title.localeCompare(b.title));
+    if (currentSelectedtri == "titre") {
+      console.log("tri titre");
+      const titleSorted = currentMedia.sort((a, b) =>
+        a.title.localeCompare(b.title)
+      );
     }
-*/
+    Object.values(currentMedia).forEach((currentMedia) => {
+      buildGallerieBlock(currentMedia);
+    });
+  }
+  generateGallerie(currentMedia);
   // Add clicks on the hearts likes
   const allHearts = document.querySelectorAll(
     "#photograph-gallerie img.svg-heart"
@@ -226,6 +228,20 @@ async function addLightBoxLink() {
   });
 }
 
+function addEventChange() {
+  const dataSelectedTri = document.getElementById("selectFiltres");
+  document
+    .getElementById("selectFiltres")
+    .addEventListener("change", function (event) {
+      console.log(this.options[event.target.selectedIndex].dataset.tri);
+      triAttr = this.options[event.target.selectedIndex].dataset.tri;
+      dataSelectedTri.setAttribute(
+        "data-selectedtri",
+        this.options[event.target.selectedIndex].dataset.tri
+      );
+    });
+}
+
 /**
  * defined currentPhotographerId and currentPhotographerName
  */
@@ -242,6 +258,7 @@ async function init() {
 
   addLightBoxLink();
   buildMediaPath(currentPhotographerName);
+  addEventChange();
 }
 
 init();
