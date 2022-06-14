@@ -631,6 +631,23 @@
   }
 }
 
+#filtres {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 25px 50px;
+}
+
+#filtres > div:first-child {
+  padding-right: 5px;
+}
+
 select {
   font-family: "DM Sans", sans-serif;
   font-size: 14px;
