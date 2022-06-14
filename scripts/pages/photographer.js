@@ -103,6 +103,39 @@ async function getCurrentPhotographerData(photographers) {
   return currentPhotographerData;
 }
 
+/**
+ * Build photograph gallerie
+ */
+async function gallerieBuilder() {
+  const gallerieContainer = document.getElementById("photograph-gallerie");
+  const currentSelectedtri = document.getElementById("selectFiltres").value;
+  const currentMedia = await getMediasOfPhotographer();
+
+  if (currentSelectedtri == "likes") {
+    currentMedia.sort((b, a) =>
+      a.likes
+        .toString()
+        .localeCompare(b.likes.toString(), "en", { numeric: "true" })
+    );
+  }
+  if (currentSelectedtri == "date") {
+    currentMedia.sort((a, b) => a.date.localeCompare(b.date));
+  }
+  if (currentSelectedtri == "titre") {
+    currentMedia.sort((a, b) => a.title.localeCompare(b.title));
+  }
+  gallerieContainer.innerHTML = "";
+
+  currentMedia.forEach(function (currentMedia, index) {
+    // console.log(`${index}`, currentMedia);
+    const mediaModel = new PhotographerGallerieBlock(
+      currentMedia,
+      currentPhotographerName
+    );
+    gallerieContainer.innerHTML += mediaModel.gallerieBlock;
+  });
+}
+
 async function displayData(photographers, medias) {
   let currentPhotographerTotallikes = 0;
 
@@ -134,38 +167,10 @@ async function displayData(photographers, medias) {
   }
 
   const photographerdGallerie = document.getElementById("photograph-gallerie");
-  // buildGallerie();
 
   const currentMedia = await getMediasOfPhotographer();
 
-  function generateGallerie(currentMedia) {
-    const currentSelectedtri =
-      document.getElementById("selectFiltres").dataset.selectedtri;
-    if (currentSelectedtri == "likes") {
-      console.log("tri likes");
-      const imageSorted = currentMedia.sort((a, b) =>
-        a.likes
-          .toString()
-          .localeCompare(b.likes.toString(), "en", { numeric: "true" })
-      );
-    }
-    if (currentSelectedtri == "date") {
-      console.log("tri date");
-      const dateSorted = currentMedia.sort((a, b) =>
-        a.date.localeCompare(b.date)
-      );
-    }
-    if (currentSelectedtri == "titre") {
-      console.log("tri titre");
-      const titleSorted = currentMedia.sort((a, b) =>
-        a.title.localeCompare(b.title)
-      );
-    }
-    Object.values(currentMedia).forEach((currentMedia) => {
-      buildGallerieBlock(currentMedia);
-    });
-  }
-  generateGallerie(currentMedia);
+  gallerieBuilder();
 
   // Bottom infos
   //bottom-infos-dayprice
@@ -183,12 +188,8 @@ function addEventChange() {
   document
     .getElementById("selectFiltres")
     .addEventListener("change", function (event) {
-      console.log(this.options[event.target.selectedIndex].dataset.tri);
-      triAttr = this.options[event.target.selectedIndex].dataset.tri;
-      dataSelectedTri.setAttribute(
-        "data-selectedtri",
-        this.options[event.target.selectedIndex].dataset.tri
-      );
+      console.log(this.options[event.target.selectedIndex].value);
+      gallerieBuilder();
     });
 }
 

@@ -1,5 +1,4 @@
 function addLikes() {
-  console.log("allHearts");
   // Add clicks on the hearts likes
   const allHearts = document.querySelectorAll(
     "#photograph-gallerie img.svg-heart"
@@ -23,7 +22,6 @@ function addLikes() {
 }
 document.onreadystatechange = () => {
   if (document.readyState === "interactive") {
-    // console.log("Page load");
     addLikes();
   }
 };
