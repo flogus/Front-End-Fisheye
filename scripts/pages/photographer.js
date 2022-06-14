@@ -37,6 +37,22 @@ async function getMedias() {
 }
 
 /**
+ * build the photograph header
+ * @param {*} currentPhotographerData
+ */
+function buildPhotographHeader(currentPhotographerData) {
+  const photographerInfos = document.getElementById("headerInfos");
+  const photographerPhoto = document.getElementById("headerPhoto");
+
+  const photographerHeaderModel = new PhotographerHeader(
+    currentPhotographerData
+  );
+  currentPhotographerPrice = currentPhotographerData.price;
+  currentPhotographerName = currentPhotographerData.name;
+  photographerInfos.innerHTML = photographerHeaderModel.headerInfos;
+  photographerPhoto.innerHTML = photographerHeaderModel.headerPhoto;
+}
+/**
  * Get the list of medias for the current photographer
  * @returns
  */
@@ -55,28 +71,6 @@ async function getMediasOfPhotographer() {
   }
   // console.log("mediasOfPhotographer ", mediasOfPhotographer);
   return mediasOfPhotographer;
-}
-
-function buildMediaPath(currentPhotographerName) {
-  const pathName = currentPhotographerName.split(" ")[0];
-  const portraitName = currentPhotographerName
-    .split(" ")
-    .join("")
-    .split("-")
-    .join("");
-  const mediaPath = "assets/photographers/" + pathName;
-  const portraitPath = "assets/photographers/" + portraitName + ".jpg";
-  // console.log("Paths", mediaPath, " > ", portraitPath);
-}
-
-/**
- * get the id param of the URL and set the var currentPhotographerId
- * @returns id
- */
-function setIdParam() {
-  const QueryString = window.location.search;
-  const urlParams = new URLSearchParams(QueryString);
-  currentPhotographerId = urlParams.get("id");
 }
 
 /**
@@ -125,25 +119,11 @@ async function displayData(photographers, medias) {
     });
   });
 
-  const photographersSectionButton = document.querySelector(".contact_button");
   let currentPhotographerPrice = "";
 
   // Build the photographer block with informations and photo profil
   currentPhotographerData = await getCurrentPhotographerData(photographers);
   buildPhotographHeader(currentPhotographerData);
-
-  function buildPhotographHeader(currentPhotographerData) {
-    const photographerInfos = document.getElementById("headerInfos");
-    const photographerPhoto = document.getElementById("headerPhoto");
-
-    const photographerHeaderModel = new PhotographerHeader(
-      currentPhotographerData
-    );
-    currentPhotographerPrice = currentPhotographerData.price;
-    currentPhotographerName = currentPhotographerData.name;
-    photographerInfos.innerHTML = photographerHeaderModel.headerInfos;
-    photographerPhoto.innerHTML = photographerHeaderModel.headerPhoto;
-  }
 
   function buildGallerieBlock(media) {
     const mediaModel = new PhotographerGallerieBlock(
@@ -186,25 +166,6 @@ async function displayData(photographers, medias) {
     });
   }
   generateGallerie(currentMedia);
-  // Add clicks on the hearts likes
-  const allHearts = document.querySelectorAll(
-    "#photograph-gallerie img.svg-heart"
-  );
-  allHearts.forEach((imgheart) => {
-    imgheart.addEventListener("click", function (event) {
-      this.nextSibling.textContent = parseInt(this.getAttribute("value")) + 1;
-
-      const totallikes = document
-        .getElementById("bottom-infos-totallikes")
-        .getAttribute("value");
-      const tempTotallikes = parseInt(totallikes) + 1;
-      document.getElementById("bottom-infos-totallikes").textContent =
-        tempTotallikes;
-      document
-        .getElementById("bottom-infos-totallikes")
-        .setAttribute("value", tempTotallikes);
-    });
-  });
 
   // Bottom infos
   //bottom-infos-dayprice
@@ -215,17 +176,6 @@ async function displayData(photographers, medias) {
   bottomInfosTotallikes.setAttribute("value", currentPhotographerTotallikes);
   const bottomInfosDayprice = document.getElementById("bottom-infos-dayprice");
   bottomInfosDayprice.textContent = currentPhotographerPrice + "€ / jour";
-}
-
-async function addLightBoxLink() {
-  // Ajouter les evenements sur les medias pour la lightbox
-  const imageLinks = document.querySelectorAll(".gallerie--card a");
-
-  imageLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      openModal("media");
-    });
-  });
 }
 
 function addEventChange() {
@@ -256,7 +206,6 @@ async function init() {
   );
   displayData(photographers, medias);
 
-  addLightBoxLink();
   buildMediaPath(currentPhotographerName);
   addEventChange();
 }
