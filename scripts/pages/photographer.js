@@ -69,7 +69,7 @@ async function getMediasOfPhotographer() {
       //console.log("photograph name", (await allMedias).medias[value]);
     }
   }
-  console.log("mediasOfPhotographer ", mediasOfPhotographer);
+  // console.log("mediasOfPhotographer ", mediasOfPhotographer);
   return mediasOfPhotographer;
 }
 
@@ -100,7 +100,7 @@ async function getCurrentPhotographerData(photographers) {
       currentPhotographerData = photographers[index];
     }
   });
-  console.log("currentPhotographerData", currentPhotographerData);
+  // console.log("currentPhotographerData", currentPhotographerData);
   return currentPhotographerData;
 }
 
@@ -111,7 +111,7 @@ async function gallerieBuilder() {
   const gallerieContainer = document.getElementById("photograph-gallerie");
   const currentSelectedtri = document.getElementById("selectFiltres").value;
   const currentMedia = await getMediasOfPhotographer();
-  console.log("gallerieBuilder currentMedia:", currentMedia);
+  // console.log("gallerieBuilder currentMedia:", currentMedia);
   if (currentSelectedtri == "likes") {
     currentMedia.sort((b, a) =>
       a.likes
@@ -137,7 +137,7 @@ async function gallerieBuilder() {
     );
     gallerieContainer.innerHTML += mediaModel.gallerieBlock;
 
-    console.log(currentMedia.title, currentMedia.image, currentMedia.video);
+    // console.log(currentMedia.title, currentMedia.image, currentMedia.video);
     var obj = {};
     obj["id"] = currentMedia.id;
     obj["title"] = currentMedia.title;
@@ -157,7 +157,7 @@ async function gallerieBuilder() {
     });
   });
 
-  console.log("modalData", modalData.stringify);
+  // console.log("modalData", modalData.stringify);
 
   document
     .getElementById("photograph-gallerie")
@@ -227,7 +227,7 @@ function addEventChange() {
   document
     .getElementById("selectFiltres")
     .addEventListener("change", function (event) {
-      console.log(this.options[event.target.selectedIndex].value);
+      // console.log(this.options[event.target.selectedIndex].value);
       gallerieBuilder();
     });
 }

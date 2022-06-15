@@ -14,7 +14,7 @@ function openModal(target, link, index) {
 
   setPrevNext(allModalData, index);
 
-  escapeCloseModal();
+  escapeCloseModal("media");
 }
 function setMedia(media) {
   const extention = media.split(".").pop();
@@ -47,6 +47,21 @@ function setTitle(title) {
   document.getElementById("mediaTitle").textContent = title;
 }
 
+function setArrows() {
+  console.log("setArrows");
+  const prevArrow = document.getElementById("modalMediaPrev");
+  document.onkeydown = function (evt) {
+    console.log(`${evt.code}`);
+
+    if (evt.key === "ArrowLeft") {
+      clickPrev();
+    }
+    if (evt.key === "ArrowRight") {
+      clickNext();
+    }
+  };
+}
+
 function setPrevNext(allModalData, index) {
   const modalMediaPrev = document.getElementById("modalMediaPrev");
   const modalMediaNext = document.getElementById("modalMediaNext");
@@ -77,19 +92,16 @@ function setPrevNext(allModalData, index) {
   }
 
   document.onkeydown = function (evt) {
-    if (evt.key == "ArrowLeft") {
-      index--;
-      console.log("ArrowLeft");
-      setMedia(allModalData[index].media);
-      setTitle(allModalData[index].title);
+    console.log(`${evt.code}`);
+
+    if (evt.key === "ArrowLeft") {
+      clickPrev();
     }
-    if (evt.key == "ArrowRight") {
-      index++;
-      console.log("ArrowRight");
-      setMedia(allModalData[index].media);
-      setTitle(allModalData[index].title);
+    if (evt.key === "ArrowRight") {
+      clickNext();
     }
   };
+  // setArrows();
 }
 
 const contactButton = document.getElementById("contact_button");
@@ -99,9 +111,7 @@ contactButton.addEventListener("click", function () {
 
 function openModalContact() {
   const contactModal = document.getElementById("contact_modal");
-
   document.getElementById("contact-name").textContent = currentPhotographerName;
-
-  console.log(currentPhotographerName);
   contactModal.style.display = "flex";
+  escapeCloseModal("contact");
 }

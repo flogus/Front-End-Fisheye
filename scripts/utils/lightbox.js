@@ -1,5 +1,5 @@
 function addLightBoxLink() {
-  console.log("addLightBoxLink", addLightBoxLink);
+  // console.log("addLightBoxLink", addLightBoxLink);
   // Ajouter les evenements sur les medias pour la lightbox
   const imageLinks = document.querySelectorAll(".gallerie--card a");
 

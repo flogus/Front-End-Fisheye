@@ -1,18 +1,8 @@
-const closeButtons = document.querySelectorAll(".close-modal");
-
 // Fermer une modale avec Escape
-function escapeCloseModal() {
+function escapeCloseModal(target) {
   document.onkeydown = function (evt) {
     if (evt.key == "Escape") {
-      if (
-        document
-          .getElementById("media_modal")
-          .getAttribute("style")
-          .split(":")[1]
-          .trim() == "flex;"
-      ) {
-        closeModal("media");
-      }
+      closeModal(target);
     }
   };
 }
@@ -22,6 +12,7 @@ function closeModal(target) {
   modal.style.display = "none";
 }
 
+const closeButtons = document.querySelectorAll(".close-modal");
 closeButtons.forEach((btn) => {
   btn.addEventListener("click", (event) => {
     closeModal("media");
