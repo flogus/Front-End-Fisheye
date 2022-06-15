@@ -76,27 +76,22 @@ function setPrevNext(allModalData, index) {
     setTitle(allModalData[index].title);
     console.log("modalMediaNext Index", index);
   }
-}
 
-// function changeModalData() {
-//   console.log("changeModalData > mediaName", mediaName);
-//   const extension = mediaName.split(".")[1];
-//   const mediaContainer = document.getElementById("media");
-//   if (extension == "mp4") {
-//     mediaContainer.querySelector("img").setAttribute("style", "display:none");
-//     mediaContainer
-//       .querySelector("video")
-//       .setAttribute("style", "display:block");
-//     mediaContainer.querySelector("source").setAttribute("src", mediaName);
-//     //console.log("Change video source : ", mediaName);
-//   } else {
-//     mediaContainer.querySelector("img").setAttribute("style", "display:block");
-//     mediaContainer.querySelector("img").setAttribute("src", mediaName);
-//     mediaContainer.querySelector("img").setAttribute("alt", mediaName);
-//     mediaContainer.querySelector("video").setAttribute("style", "display:none");
-//   }
-//   //buildLinksPrevNext(mediaName);
-// }
+  document.onkeydown = function (evt) {
+    if (evt.key == "ArrowLeft") {
+      index--;
+      console.log("ArrowLeft");
+      setMedia(allModalData[index].media);
+      setTitle(allModalData[index].title);
+    }
+    if (evt.key == "ArrowRight") {
+      index++;
+      console.log("ArrowRight");
+      setMedia(allModalData[index].media);
+      setTitle(allModalData[index].title);
+    }
+  };
+}
 
 const contactButton = document.getElementById("contact_button");
 contactButton.addEventListener("click", function () {
