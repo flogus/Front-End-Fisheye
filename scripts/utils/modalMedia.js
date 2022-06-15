@@ -16,6 +16,8 @@ function openModal(target, link, index) {
   setTitle(allModalData[index].title);
 
   setPrevNext(allModalData, index);
+
+  escapeCloseModal();
 }
 function setMedia(media) {
   const extention = media.split(".").pop();
