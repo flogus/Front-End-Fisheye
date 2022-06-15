@@ -69,7 +69,7 @@ async function getMediasOfPhotographer() {
       //console.log("photograph name", (await allMedias).medias[value]);
     }
   }
-  // console.log("mediasOfPhotographer ", mediasOfPhotographer);
+  console.log("mediasOfPhotographer ", mediasOfPhotographer);
   return mediasOfPhotographer;
 }
 
@@ -100,6 +100,7 @@ async function getCurrentPhotographerData(photographers) {
       currentPhotographerData = photographers[index];
     }
   });
+  console.log("currentPhotographerData", currentPhotographerData);
   return currentPhotographerData;
 }
 
@@ -110,7 +111,7 @@ async function gallerieBuilder() {
   const gallerieContainer = document.getElementById("photograph-gallerie");
   const currentSelectedtri = document.getElementById("selectFiltres").value;
   const currentMedia = await getMediasOfPhotographer();
-
+  console.log("gallerieBuilder currentMedia:", currentMedia);
   if (currentSelectedtri == "likes") {
     currentMedia.sort((b, a) =>
       a.likes
@@ -126,6 +127,8 @@ async function gallerieBuilder() {
   }
   gallerieContainer.innerHTML = "";
 
+  const modalData = [];
+  const currentMediaName = "";
   currentMedia.forEach(function (currentMedia, index) {
     // console.log(`${index}`, currentMedia);
     const mediaModel = new PhotographerGallerieBlock(
@@ -133,7 +136,27 @@ async function gallerieBuilder() {
       currentPhotographerName
     );
     gallerieContainer.innerHTML += mediaModel.gallerieBlock;
+
+    console.log(currentMedia.title, currentMedia.image);
+    var obj = {};
+    obj["id"] = currentMedia.id;
+    obj["title"] = currentMedia.title;
+    obj["media"] = currentMedia.image;
+    modalData.push(obj);
+
+    const imageLinks = document.querySelectorAll(".gallerie--card a");
+    imageLinks.forEach((link, index) => {
+      link.addEventListener("click", (event) => {
+        openModal("media", link, index);
+      });
+    });
   });
+
+  console.log("modalData", modalData.stringify);
+
+  document
+    .getElementById("photograph-gallerie")
+    .setAttribute("data-medias", JSON.stringify(modalData));
 }
 
 async function displayData(photographers, medias) {
@@ -143,7 +166,18 @@ async function displayData(photographers, medias) {
     photographer.medias = [];
     medias.forEach((media) => {
       if (photographer.id == media.photographerId) {
-        photographer.medias.push(media.id);
+        let tempMedia;
+        if (media.image !== undefined) {
+          tempMedia = media.image;
+        }
+        if (media.video !== undefined) {
+          tempMedia = media.video;
+        }
+        photographer.medias.push({
+          id: media.id,
+          media: tempMedia,
+          title: media.title,
+        });
         if (media.photographerId == currentPhotographerId) {
           currentPhotographerTotallikes =
             currentPhotographerTotallikes + media.likes;

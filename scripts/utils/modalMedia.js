@@ -1,64 +1,61 @@
 const mediaModal = document.getElementById("media_modal");
+let nbSetPN = 0;
 
-function openModal(target) {
+function openModal(target, link, index) {
+  const currentPhotoId = link.id;
+  const allModalData = JSON.parse(
+    document.getElementById("photograph-gallerie").dataset.medias
+  );
   const modal = document.getElementById(target + "_modal");
   modal.style.display = "flex";
+
+  setMedia(allModalData[index].media);
+  setTitle(allModalData[index].title);
+
+  if (nbSetPN == 0) {
+    setPrevNext(allModalData, index);
+    nbSetPN = 1;
+  }
+}
+function setMedia(media) {
+  document
+    .getElementById("mediaImage")
+    .setAttribute(
+      "src",
+      globalPhotosPath + currentPhotographerName.split(" ")[0] + "/" + media
+    );
+}
+function setTitle(title) {
+  document.getElementById("mediaTitle").textContent = title;
 }
 
-function buildLinksPrevNext(mediaName) {
-  const currentMediaName = mediaName.split("/").pop();
-  const currentPhotographerName = mediaName.split("/").at(-2);
-
-  const mediaModalId = document.getElementById("media_modal");
-  const mediaListString = mediaModalId.getAttribute("data-medialist");
-  let mediaListArray = mediaListString.split(",");
-  const currentIndex = mediaListArray.findIndex(
-    (element) => element == currentMediaName
-  );
-  let prevIndex = currentIndex - 1;
-  let nextIndex = currentIndex + 1;
-  if (currentIndex == 0) {
-    prevIndex = mediaListArray.length - 1;
-  }
-  if (nextIndex == mediaListArray.length) {
-    nextIndex = 0;
-  }
-  // Change modal title
-  document.querySelector(".modal h3").innerText = document
-    .querySelectorAll(".gallerie--card a")
-    [currentIndex].getAttribute("mediatitle");
-
-  setPrevNextButtons(
-    currentPhotographerName + "/" + mediaListArray[prevIndex],
-    currentPhotographerName + "/" + mediaListArray[nextIndex]
-  );
-}
-
-function setPrevNextButtons(mediaNamePrev, mediaNameNext) {
-  // console.log("setPrevNextButtons", mediaNamePrev, mediaNameNext);
+function setPrevNext(allModalData, index) {
   const modalMediaPrev = document.getElementById("modalMediaPrev");
-  modalMediaPrev.addEventListener("click", function () {
-    changeModalImage(globalPhotosPath + mediaNamePrev);
-  });
-
+  // modalMediaPrev.removeEventListener("click", clickPrev);
+  modalMediaPrev.addEventListener("click", clickPrev);
   const modalMediaNext = document.getElementById("modalMediaNext");
-  modalMediaNext.addEventListener("click", function () {
-    changeModalImage(globalPhotosPath + mediaNameNext);
-  });
-  document.onkeydown = function (evt) {
-    if (evt.key == "ArrowLeft") {
-      // console.log("ArrowLeft");
-      changeModalImage(globalPhotosPath + mediaNamePrev);
+  // modalMediaNext.removeEventListener("click", clickNext);
+  modalMediaNext.addEventListener("click", clickNext);
+
+  function clickPrev() {
+    index--;
+    if (index == -1) {
+      index = allModalData.length - 1;
     }
-    if (evt.key == "ArrowRight") {
-      // console.log("ArrowRight");
-      changeModalImage(globalPhotosPath + mediaNameNext);
+    console.log("modalMediaPrev Index", index);
+  }
+
+  function clickNext() {
+    index++;
+    if (index == allModalData.length) {
+      index = 0;
     }
-  };
+    console.log("modalMediaNext Index", index);
+  }
 }
 
-function changeModalImage(mediaName) {
-  //console.log("changeModalImage > mediaName", mediaName);
+function changeModalData() {
+  console.log("changeModalData > mediaName", mediaName);
   const extension = mediaName.split(".")[1];
   const mediaContainer = document.getElementById("media");
   if (extension == "mp4") {
@@ -74,7 +71,7 @@ function changeModalImage(mediaName) {
     mediaContainer.querySelector("img").setAttribute("alt", mediaName);
     mediaContainer.querySelector("video").setAttribute("style", "display:none");
   }
-  buildLinksPrevNext(mediaName);
+  //buildLinksPrevNext(mediaName);
 }
 
 const contactButton = document.getElementById("contact_button");

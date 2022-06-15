@@ -5,9 +5,7 @@ function addLightBoxLink() {
 
   imageLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
-      openModal("media");
+      openModal("media", link);
     });
   });
 }
-
-window.setTimeout(addLightBoxLink, 500);
