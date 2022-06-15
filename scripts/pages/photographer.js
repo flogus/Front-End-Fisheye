@@ -137,11 +137,16 @@ async function gallerieBuilder() {
     );
     gallerieContainer.innerHTML += mediaModel.gallerieBlock;
 
-    console.log(currentMedia.title, currentMedia.image);
+    console.log(currentMedia.title, currentMedia.image, currentMedia.video);
     var obj = {};
     obj["id"] = currentMedia.id;
     obj["title"] = currentMedia.title;
-    obj["media"] = currentMedia.image;
+    if (currentMedia.image != undefined) {
+      obj["media"] = currentMedia.image;
+    }
+    if (currentMedia.video != undefined) {
+      obj["media"] = currentMedia.video;
+    }
     modalData.push(obj);
 
     const imageLinks = document.querySelectorAll(".gallerie--card a");

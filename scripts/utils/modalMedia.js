@@ -2,24 +2,43 @@ const mediaModal = document.getElementById("media_modal");
 let nbSetPN = 0;
 
 function openModal(target, link, index) {
+  console.log("openModal - currentIndex :", index);
+
   const currentPhotoId = link.id;
   const allModalData = JSON.parse(
     document.getElementById("photograph-gallerie").dataset.medias
   );
+  console.log("openModal - allModalData :", allModalData);
   const modal = document.getElementById(target + "_modal");
   modal.style.display = "flex";
 
   setMedia(allModalData[index].media);
   setTitle(allModalData[index].title);
 
-  if (nbSetPN == 0) {
-    setPrevNext(allModalData, index);
-    nbSetPN = 1;
-  }
+  setPrevNext(allModalData, index);
 }
 function setMedia(media) {
+  const extention = media.split(".").pop();
+
+  let mediaIdTarget = "mediaImage";
+  if (extention == "mp4") {
+    mediaIdTarget = "mediaVideo";
+    document
+      .querySelector("#media video")
+      .setAttribute("style", "display:block");
+    document.querySelector("#mediaImage").setAttribute("style", "display:none");
+  } else {
+    document
+      .querySelector("#media video")
+      .setAttribute("style", "display:none");
+    document
+      .querySelector("#mediaImage")
+      .setAttribute("style", "display:block");
+  }
+
+  // Set media
   document
-    .getElementById("mediaImage")
+    .getElementById(mediaIdTarget)
     .setAttribute(
       "src",
       globalPhotosPath + currentPhotographerName.split(" ")[0] + "/" + media
@@ -31,17 +50,20 @@ function setTitle(title) {
 
 function setPrevNext(allModalData, index) {
   const modalMediaPrev = document.getElementById("modalMediaPrev");
-  // modalMediaPrev.removeEventListener("click", clickPrev);
-  modalMediaPrev.addEventListener("click", clickPrev);
   const modalMediaNext = document.getElementById("modalMediaNext");
-  // modalMediaNext.removeEventListener("click", clickNext);
-  modalMediaNext.addEventListener("click", clickNext);
+  if (nbSetPN == 0) {
+    modalMediaPrev.addEventListener("click", clickPrev);
+    modalMediaNext.addEventListener("click", clickNext);
+    nbSetPN = 1;
+  }
 
   function clickPrev() {
     index--;
     if (index == -1) {
       index = allModalData.length - 1;
     }
+    setMedia(allModalData[index].media);
+    setTitle(allModalData[index].title);
     console.log("modalMediaPrev Index", index);
   }
 
@@ -50,29 +72,31 @@ function setPrevNext(allModalData, index) {
     if (index == allModalData.length) {
       index = 0;
     }
+    setMedia(allModalData[index].media);
+    setTitle(allModalData[index].title);
     console.log("modalMediaNext Index", index);
   }
 }
 
-function changeModalData() {
-  console.log("changeModalData > mediaName", mediaName);
-  const extension = mediaName.split(".")[1];
-  const mediaContainer = document.getElementById("media");
-  if (extension == "mp4") {
-    mediaContainer.querySelector("img").setAttribute("style", "display:none");
-    mediaContainer
-      .querySelector("video")
-      .setAttribute("style", "display:block");
-    mediaContainer.querySelector("source").setAttribute("src", mediaName);
-    //console.log("Change video source : ", mediaName);
-  } else {
-    mediaContainer.querySelector("img").setAttribute("style", "display:block");
-    mediaContainer.querySelector("img").setAttribute("src", mediaName);
-    mediaContainer.querySelector("img").setAttribute("alt", mediaName);
-    mediaContainer.querySelector("video").setAttribute("style", "display:none");
-  }
-  //buildLinksPrevNext(mediaName);
-}
+// function changeModalData() {
+//   console.log("changeModalData > mediaName", mediaName);
+//   const extension = mediaName.split(".")[1];
+//   const mediaContainer = document.getElementById("media");
+//   if (extension == "mp4") {
+//     mediaContainer.querySelector("img").setAttribute("style", "display:none");
+//     mediaContainer
+//       .querySelector("video")
+//       .setAttribute("style", "display:block");
+//     mediaContainer.querySelector("source").setAttribute("src", mediaName);
+//     //console.log("Change video source : ", mediaName);
+//   } else {
+//     mediaContainer.querySelector("img").setAttribute("style", "display:block");
+//     mediaContainer.querySelector("img").setAttribute("src", mediaName);
+//     mediaContainer.querySelector("img").setAttribute("alt", mediaName);
+//     mediaContainer.querySelector("video").setAttribute("style", "display:none");
+//   }
+//   //buildLinksPrevNext(mediaName);
+// }
 
 const contactButton = document.getElementById("contact_button");
 contactButton.addEventListener("click", function () {
