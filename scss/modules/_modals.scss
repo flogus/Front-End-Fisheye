@@ -109,12 +109,15 @@
     }
     form {
       font-family: "DM Sans", sans-serif;
-      width: 90%;
-      margin: 10px 30px 30px 30px;
+      width: 100%;
+      margin: 10px 0 20px 0;
       div {
         display: flex;
         flex-direction: column;
-        padding: 5px 0;
+        padding: 5px 30px;
+        button {
+          max-width: 140px;
+        }
       }
       label,
       input,
@@ -125,5 +128,11 @@
         width: 100%;
       }
     }
+  }
+}
+
+@media screen and (max-width: $mobilebreakpoint) {
+  #contact_modal header {
+    flex-direction: row;
   }
 }
