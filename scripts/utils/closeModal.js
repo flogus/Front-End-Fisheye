@@ -20,12 +20,6 @@ function escapeCloseModal() {
 function closeModal(target) {
   const modal = document.getElementById(target + "_modal");
   modal.style.display = "none";
-
-  const modalMediaPrev = document.getElementById("modalMediaPrev");
-  const modalMediaNext = document.getElementById("modalMediaNext");
-
-  // modalMediaPrev.removeEventListener("click", clickPrev);
-  // modalMediaNext.removeEventListener("click", clickNext);
 }
 
 closeButtons.forEach((btn) => {

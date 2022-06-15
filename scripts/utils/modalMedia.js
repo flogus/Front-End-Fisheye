@@ -2,13 +2,10 @@ const mediaModal = document.getElementById("media_modal");
 let nbSetPN = 0;
 
 function openModal(target, link, index) {
-  console.log("openModal - currentIndex :", index);
-
   const currentPhotoId = link.id;
   const allModalData = JSON.parse(
     document.getElementById("photograph-gallerie").dataset.medias
   );
-  console.log("openModal - allModalData :", allModalData);
   const modal = document.getElementById(target + "_modal");
   modal.style.display = "flex";
 
@@ -97,5 +94,14 @@ function setPrevNext(allModalData, index) {
 
 const contactButton = document.getElementById("contact_button");
 contactButton.addEventListener("click", function () {
-  displayModal("contact", "");
+  openModalContact();
 });
+
+function openModalContact() {
+  const contactModal = document.getElementById("contact_modal");
+
+  document.getElementById("contact-name").textContent = currentPhotographerName;
+
+  console.log(currentPhotographerName);
+  contactModal.style.display = "flex";
+}
