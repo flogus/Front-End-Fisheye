@@ -13,26 +13,6 @@ class PhotographerDetails {
     this._price = data.price;
     this._portrait = data.portrait;
   }
-
-  get name() {
-    return this._name;
-  }
-  get city() {
-    return this._city;
-  }
-  get country() {
-    return this._country;
-  }
-
-  get tagline() {
-    return this._tagline;
-  }
-  get price() {
-    return this._price;
-  }
-  get portrait() {
-    return this._portrait;
-  }
   get detailTemplate() {
     let template = "<article>";
     template +=
