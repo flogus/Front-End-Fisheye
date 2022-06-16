@@ -17,5 +17,4 @@ function buildMediaPath(currentPhotographerName) {
     .join("");
   const mediaPath = "assets/photographers/" + pathName;
   const portraitPath = "assets/photographers/" + portraitName + ".jpg";
-  // console.log("Paths", mediaPath, " > ", portraitPath);
 }
