@@ -5,7 +5,6 @@
  */
 class PhotographerDetails {
   constructor(data) {
-    // console.log("PhotographerDetail : ", data);
     this._name = data.name;
     this._id = data.id;
     this._city = data.city;
