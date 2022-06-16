@@ -376,20 +376,20 @@
           flex: 0 0 auto;
 }
 
-.photograph-header #headerInfos h2 {
+.photograph-header #headerInfos h1 {
   font-family: "DM Sans", sans-serif;
   color: #d3573c;
   font-size: 36px;
   margin: 0 0 6px 0;
 }
 
-.photograph-header #headerInfos h3 {
+.photograph-header #headerInfos h2 {
   font-family: "DM Sans", sans-serif;
   color: #901c1c;
   font-size: 22px;
 }
 
-.photograph-header #headerInfos h4 {
+.photograph-header #headerInfos h3 {
   font-family: "DM Sans", sans-serif;
   font-size: 16px;
   font-weight: 100;
