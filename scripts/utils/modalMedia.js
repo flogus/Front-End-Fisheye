@@ -47,27 +47,15 @@ function setTitle(title) {
   document.getElementById("mediaTitle").textContent = title;
 }
 
-function setArrows() {
-  console.log("setArrows");
-  const prevArrow = document.getElementById("modalMediaPrev");
-  document.onkeydown = function (evt) {
-    console.log(`${evt.code}`);
-
-    if (evt.key === "ArrowLeft") {
-      clickPrev();
-    }
-    if (evt.key === "ArrowRight") {
-      clickNext();
-    }
-  };
-}
-
 function setPrevNext(allModalData, index) {
-  const modalMediaPrev = document.getElementById("modalMediaPrev");
-  const modalMediaNext = document.getElementById("modalMediaNext");
   if (nbSetPN == 0) {
+    const modalMediaPrev = document.getElementById("modalMediaPrev");
+    const modalMediaNext = document.getElementById("modalMediaNext");
+
     modalMediaPrev.addEventListener("click", clickPrev);
     modalMediaNext.addEventListener("click", clickNext);
+
+    setArrowsListeners();
     nbSetPN = 1;
   }
 
@@ -90,6 +78,28 @@ function setPrevNext(allModalData, index) {
     setTitle(allModalData[index].title);
     console.log("modalMediaNext Index", index);
   }
+  function setArrowsListeners() {
+    document.addEventListener("keydown", function (event) {
+      const key = event.key;
+      switch (key) {
+        case "ArrowLeft":
+          clickPrev();
+          break;
+        case "ArrowRight":
+          clickNext();
+          break;
+      }
+    });
+  }
+}
+
+const contactButton = document.getElementById("contact_button");
+contactButton.addEventListener("click", function () {
+  openModalContact();
+});
+function setArrows() {
+  console.log("setArrows");
+  const prevArrow = document.getElementById("modalMediaPrev");
 
   document.onkeydown = function (evt) {
     console.log(`${evt.code}`);
@@ -101,13 +111,7 @@ function setPrevNext(allModalData, index) {
       clickNext();
     }
   };
-  // setArrows();
 }
-
-const contactButton = document.getElementById("contact_button");
-contactButton.addEventListener("click", function () {
-  openModalContact();
-});
 
 function openModalContact() {
   const contactModal = document.getElementById("contact_modal");
