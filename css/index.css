@@ -89,11 +89,8 @@
 }
 
 #media_modal .modal div video {
-  height: 50%;
-  width: auto;
-  aspect-ratio: 1;
-  -o-object-fit: scale-down;
-     object-fit: scale-down;
+  width: 70%;
+  aspect-ratio: auto;
 }
 
 #media_modal .modal div div {

@@ -21,15 +21,28 @@ function setMedia(media) {
 
   let mediaIdTarget = "mediaImage";
   if (extention == "mp4") {
-    mediaIdTarget = "mediaVideo";
-    document
-      .querySelector("#media video")
-      .setAttribute("style", "display:block");
+    // mediaIdTarget = "mediaVideo";
+    // document
+    //   .querySelector("#media video")
+    //   .setAttribute("style", "display:block");
     document.querySelector("#mediaImage").setAttribute("style", "display:none");
+    const videoPlayer = document.createElement("video");
+    videoPlayer.setAttribute("controls", "");
+    videoPlayer.setAttribute("autoplay", "");
+    videoPlayer.setAttribute("muted", "");
+
+    const videoSrc = document.createElement("source");
+    videoSrc.setAttribute(
+      "src",
+      globalPhotosPath + currentPhotographerName.split(" ")[0] + "/" + media
+    );
+    videoSrc.setAttribute("type", "video/mp4");
+    videoPlayer.append(videoSrc);
+    document.querySelector("#media").prepend(videoPlayer);
   } else {
-    document
-      .querySelector("#media video")
-      .setAttribute("style", "display:none");
+    if (document.body.contains(document.querySelector("#media video"))) {
+      document.querySelector("#media video").remove();
+    }
     document
       .querySelector("#mediaImage")
       .setAttribute("style", "display:block");

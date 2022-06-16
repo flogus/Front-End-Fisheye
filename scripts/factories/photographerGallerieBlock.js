@@ -69,6 +69,7 @@ class PhotographerGallerieBlock {
         "'>";
     }
     if (this._video !== undefined) {
+      // template += "<video  controls autoplay loop muted playsinline >";
       template += "<video width='100%' height='100%'>";
       template += "<source src=" + this.videoUrl + " type='video/mp4'>";
       template += "</video>";
