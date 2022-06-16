@@ -76,14 +76,16 @@ class PhotographerGallerieBlock {
     template += "</a>";
     template += "<div class='gallerie--card-description'>";
     if (this._video !== undefined) {
-      this._title = "VIDEO - " + this._title;
+      this._title;
     }
-    template += "<div>" + this.formatDate + " - " + this._title + "</div>";
+    // template += "<div>" + this.formatDate + " - " + this._title + "</div>";
+    template += "<div>" + this._title + "</div>";
     template +=
-      "<div><img class='svg-heart' src='assets/icons/heart.svg' alt='Add a like' value=" +
+      "<div>" +
+      this._likes +
+      "<img class='svg-heart' src='assets/icons/heart.svg' alt='Add a like' value=" +
       this._likes +
       " />" +
-      this._likes +
       "</div>";
     template += "</div>";
     template += "</div>";
