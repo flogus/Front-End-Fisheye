@@ -6,7 +6,8 @@ function addLikes() {
 
   allHearts.forEach((imgheart) => {
     imgheart.addEventListener("click", function (event) {
-      this.nextSibling.textContent = parseInt(this.getAttribute("value")) + 1;
+      this.previousSibling.textContent =
+        parseInt(this.getAttribute("value")) + 1;
 
       const totallikes = document
         .getElementById("bottom-infos-totallikes")
