@@ -1,14 +1,9 @@
 async function getPhotographers() {
-  const photographers = await fetch("./data/photographers.json")
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      // Work with JSON data here
-      return data.photographers;
-    })
+  const photographers = await fetch('./data/photographers.json')
+    .then((response) => response.json())
+    .then((data) => data.photographers)
     .catch((err) => {
-      console.error("Erreur fetch");
+      console.error('Erreur fetch');
     });
 
   return {
@@ -17,10 +12,10 @@ async function getPhotographers() {
 }
 
 async function displayData(photographers) {
-  const photographersSection = document.querySelector(".photographers_details");
+  const photographersSection = document.querySelector('.photographers_details');
   // Loop on photographers
   photographers.forEach((photographer) => {
-    const photographerModel = new PhotographerFactory(photographer, "details");
+    const photographerModel = new PhotographerFactory(photographer, 'details');
     photographersSection.innerHTML += photographerModel.detailTemplate;
   });
 }

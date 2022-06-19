@@ -1,17 +1,14 @@
-const globalImagesPath = "assets/images/";
-const globalPhotosPath = "assets/photographers/";
+const globalImagesPath = 'assets/images/';
+const globalPhotosPath = 'assets/photographers/';
 
 async function getPhotographers() {
-  const photographers = await fetch("./data/photographers.json")
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
+  const photographers = await fetch('./data/photographers.json')
+    .then((response) => response.json())
+    .then((data) =>
       // Work with JSON data here
-      return data.photographers;
-    })
+      data.photographers)
     .catch((err) => {
-      console.error("Erreur fetch photographers");
+      console.error('Erreur fetch photographers');
     });
 
   return {
@@ -19,16 +16,13 @@ async function getPhotographers() {
   };
 }
 async function getMedias() {
-  const medias = await fetch("./data/photographers.json")
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
+  const medias = await fetch('./data/photographers.json')
+    .then((response) => response.json())
+    .then((data) =>
       // Work with JSON data here
-      return data.media;
-    })
+      data.media)
     .catch((err) => {
-      console.error("Erreur fetch media");
+      console.error('Erreur fetch media');
     });
 
   return {
@@ -41,11 +35,11 @@ async function getMedias() {
  * @param {*} currentPhotographerData
  */
 function buildPhotographHeader(currentPhotographerData) {
-  const photographerInfos = document.getElementById("headerInfos");
-  const photographerPhoto = document.getElementById("headerPhoto");
+  const photographerInfos = document.getElementById('headerInfos');
+  const photographerPhoto = document.getElementById('headerPhoto');
 
   const photographerHeaderModel = new PhotographerHeader(
-    currentPhotographerData
+    currentPhotographerData,
   );
   currentPhotographerPrice = currentPhotographerData.price;
   currentPhotographerName = currentPhotographerData.name;
@@ -66,7 +60,7 @@ async function getMediasOfPhotographer() {
       (await allMedias).medias[value].photographerId == currentPhotographerId
     ) {
       mediasOfPhotographer.push((await allMedias).medias[value]);
-      //console.log("photograph name", (await allMedias).medias[value]);
+      // console.log("photograph name", (await allMedias).medias[value]);
     }
   }
   // console.log("mediasOfPhotographer ", mediasOfPhotographer);
@@ -79,7 +73,7 @@ async function getMediasOfPhotographer() {
  * @returns photographeName
  */
 async function getCurrentPhotographerName(photographers) {
-  let photographeName = "";
+  let photographeName = '';
   photographers.forEach((photographer) => {
     if (photographer.id == currentPhotographerId) {
       photographeName = photographer.name;
@@ -94,7 +88,7 @@ async function getCurrentPhotographerName(photographers) {
  * @returns
  */
 async function getCurrentPhotographerData(photographers) {
-  let currentPhotographerData = "";
+  let currentPhotographerData = '';
   photographers.forEach((photographer, index) => {
     if (photographer.id == currentPhotographerId) {
       currentPhotographerData = photographers[index];
@@ -108,51 +102,49 @@ async function getCurrentPhotographerData(photographers) {
  * Build photograph gallerie
  */
 async function gallerieBuilder() {
-  const gallerieContainer = document.getElementById("photograph-gallerie");
-  const currentSelectedtri = document.getElementById("selectFiltres").value;
+  const gallerieContainer = document.getElementById('photograph-gallerie');
+  const currentSelectedtri = document.getElementById('selectFiltres').value;
   const currentMedia = await getMediasOfPhotographer();
   // console.log("gallerieBuilder currentMedia:", currentMedia);
-  if (currentSelectedtri == "likes") {
-    currentMedia.sort((b, a) =>
-      a.likes
-        .toString()
-        .localeCompare(b.likes.toString(), "en", { numeric: "true" })
-    );
+  if (currentSelectedtri == 'likes') {
+    currentMedia.sort((b, a) => a.likes
+      .toString()
+      .localeCompare(b.likes.toString(), 'en', { numeric: 'true' }));
   }
-  if (currentSelectedtri == "date") {
+  if (currentSelectedtri == 'date') {
     currentMedia.sort((a, b) => a.date.localeCompare(b.date));
   }
-  if (currentSelectedtri == "titre") {
+  if (currentSelectedtri == 'titre') {
     currentMedia.sort((a, b) => a.title.localeCompare(b.title));
   }
-  gallerieContainer.innerHTML = "";
+  gallerieContainer.innerHTML = '';
 
   const modalData = [];
-  const currentMediaName = "";
-  currentMedia.forEach(function (currentMedia, index) {
+  const currentMediaName = '';
+  currentMedia.forEach((currentMedia, index) => {
     // console.log(`${index}`, currentMedia);
     const mediaModel = new PhotographerGallerieBlock(
       currentMedia,
-      currentPhotographerName
+      currentPhotographerName,
     );
     gallerieContainer.innerHTML += mediaModel.gallerieBlock;
 
     // console.log(currentMedia.title, currentMedia.image, currentMedia.video);
-    var obj = {};
-    obj["id"] = currentMedia.id;
-    obj["title"] = currentMedia.title;
+    const obj = {};
+    obj.id = currentMedia.id;
+    obj.title = currentMedia.title;
     if (currentMedia.image != undefined) {
-      obj["media"] = currentMedia.image;
+      obj.media = currentMedia.image;
     }
     if (currentMedia.video != undefined) {
-      obj["media"] = currentMedia.video;
+      obj.media = currentMedia.video;
     }
     modalData.push(obj);
 
-    const imageLinks = document.querySelectorAll(".gallerie--card a");
+    const imageLinks = document.querySelectorAll('.gallerie--card a');
     imageLinks.forEach((link, index) => {
-      link.addEventListener("click", (event) => {
-        openModal("media", link, index);
+      link.addEventListener('click', (event) => {
+        openModal('media', link, index);
       });
     });
   });
@@ -160,8 +152,8 @@ async function gallerieBuilder() {
   // console.log("modalData", modalData.stringify);
 
   document
-    .getElementById("photograph-gallerie")
-    .setAttribute("data-medias", JSON.stringify(modalData));
+    .getElementById('photograph-gallerie')
+    .setAttribute('data-medias', JSON.stringify(modalData));
 }
 
 async function displayData(photographers, medias) {
@@ -184,14 +176,13 @@ async function displayData(photographers, medias) {
           title: media.title,
         });
         if (media.photographerId == currentPhotographerId) {
-          currentPhotographerTotallikes =
-            currentPhotographerTotallikes + media.likes;
+          currentPhotographerTotallikes += media.likes;
         }
       }
     });
   });
 
-  let currentPhotographerPrice = "";
+  const currentPhotographerPrice = '';
 
   // Build the photographer block with informations and photo profil
   currentPhotographerData = await getCurrentPhotographerData(photographers);
@@ -200,33 +191,33 @@ async function displayData(photographers, medias) {
   function buildGallerieBlock(media) {
     const mediaModel = new PhotographerGallerieBlock(
       media,
-      currentPhotographerName
+      currentPhotographerName,
     );
     photographerdGallerie.innerHTML += mediaModel.gallerieBlock;
   }
 
-  const photographerdGallerie = document.getElementById("photograph-gallerie");
+  const photographerdGallerie = document.getElementById('photograph-gallerie');
 
   const currentMedia = await getMediasOfPhotographer();
 
   gallerieBuilder();
 
   // Bottom infos
-  //bottom-infos-dayprice
+  // bottom-infos-dayprice
   const bottomInfosTotallikes = document.getElementById(
-    "bottom-infos-totallikes"
+    'bottom-infos-totallikes',
   );
   bottomInfosTotallikes.textContent = currentPhotographerTotallikes;
-  bottomInfosTotallikes.setAttribute("value", currentPhotographerTotallikes);
-  const bottomInfosDayprice = document.getElementById("bottom-infos-dayprice");
-  bottomInfosDayprice.textContent = currentPhotographerPrice + "€ / jour";
+  bottomInfosTotallikes.setAttribute('value', currentPhotographerTotallikes);
+  const bottomInfosDayprice = document.getElementById('bottom-infos-dayprice');
+  bottomInfosDayprice.textContent = `${currentPhotographerPrice}€ / jour`;
 }
 
 function addEventChange() {
-  const dataSelectedTri = document.getElementById("selectFiltres");
+  const dataSelectedTri = document.getElementById('selectFiltres');
   document
-    .getElementById("selectFiltres")
-    .addEventListener("change", function (event) {
+    .getElementById('selectFiltres')
+    .addEventListener('change', (event) => {
       // console.log(this.options[event.target.selectedIndex].value);
       gallerieBuilder();
     });
@@ -239,10 +230,10 @@ async function init() {
   const currentPhotographerId = setIdParam();
   // Récupère les datas des photographes
   const { photographers } = await getPhotographers();
-  const { medias } = await getMedias("totallikes");
+  const { medias } = await getMedias('totallikes');
 
   const currentPhotographerName = await getCurrentPhotographerName(
-    photographers
+    photographers,
   );
   displayData(photographers, medias);
 
