@@ -6,10 +6,8 @@
  * @param {data}
  * @returns
  */
-// eslint-disable-next-line no-unused-vars
 class PhotographerGallerieBlock {
   constructor(data, currentPhotographerName) {
-    // console.log("PhotographerGallerieBlock : ", data);
     this._title = data.title;
     this._image = data.image;
     this._date = data.date;
@@ -47,7 +45,7 @@ class PhotographerGallerieBlock {
   }
 
   get mediaUrl() {
-    if (this._video != undefined) {
+    if (this._video !== undefined) {
       return this.videoUrl;
     }
     return this.imgUrl;
@@ -65,7 +63,7 @@ class PhotographerGallerieBlock {
       }' id='${
         this._photoId
       }'>`;
-    if (this._image != undefined) {
+    if (this._image !== undefined) {
       template
         += `<img id='${
           this._photoId
@@ -75,18 +73,13 @@ class PhotographerGallerieBlock {
           this._title
         }'>`;
     }
-    if (this._video != undefined) {
-      // template += "<video  controls autoplay loop muted playsinline >";
+    if (this._video !== undefined) {
       template += "<video width='100%' height='100%'>";
       template += `<source src=${this.videoUrl} type='video/mp4'>`;
       template += '</video>';
     }
     template += '</a>';
     template += "<div class='gallerie--card-description'>";
-    if (this._video != undefined) {
-      template += this._title;
-    }
-    // template += "<div>" + this.formatDate + " - " + this._title + "</div>";
     template += `<div>${this._title}</div>`;
     template
       += `<div>${
