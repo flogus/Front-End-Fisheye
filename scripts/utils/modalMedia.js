@@ -19,39 +19,26 @@ function openModal(target, link, index) {
 }
 function setMedia(media) {
   const extention = media.split('.').pop();
-
   const mediaIdTarget = 'mediaImage';
-  if (extention == 'mp4') {
-    document.querySelector('#mediaImage').setAttribute('style', 'display:none');
-    const videoPlayer = document.createElement('video');
-    videoPlayer.setAttribute('controls', '');
-    videoPlayer.setAttribute('autoplay', '');
-    videoPlayer.setAttribute('muted', '');
+  const mediaModel = new MediaFactory(media, extention);
 
-    const videoSrc = document.createElement('source');
-    videoSrc.setAttribute(
-      'src',
-      `${globalPhotosPath + currentPhotographerName.split(' ')[0]}/${media}`,
-    );
-    videoSrc.setAttribute('type', 'video/mp4');
-    videoPlayer.append(videoSrc);
-    document.querySelector('#media').prepend(videoPlayer);
-  } else {
-    if (document.body.contains(document.querySelector('#media video'))) {
-      document.querySelector('#media video').remove();
-    }
-    document
-      .querySelector('#mediaImage')
-      .setAttribute('style', 'display:block');
+  console.log(media, extention);
+  console.log(mediaModel);
+
+  // Remove media
+  if (document.body.contains(document.querySelector('#media img'))) {
+    document.querySelector('#media img').remove();
   }
-
+  if (document.body.contains(document.querySelector('#media video'))) {
+    document.querySelector('#media video').remove();
+  }
   // Set media
-  document
-    .getElementById(mediaIdTarget)
-    .setAttribute(
-      'src',
-      `${globalPhotosPath + currentPhotographerName.split(' ')[0]}/${media}`,
-    );
+  if (extention == 'mp4') {
+    document.querySelector('#media').prepend(mediaModel.getVideo);
+  }
+  if (extention == 'jpg') {
+    document.querySelector('#media').prepend(mediaModel.getImage);
+  }
 }
 function setTitle(title) {
   document.getElementById('mediaTitle').textContent = title;
