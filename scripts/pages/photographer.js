@@ -1,12 +1,11 @@
+/* eslint-disable eqeqeq */
 const globalImagesPath = 'assets/images/';
 const globalPhotosPath = 'assets/photographers/';
 
 async function getPhotographers() {
   const photographers = await fetch('./data/photographers.json')
     .then((response) => response.json())
-    .then((data) =>
-      // Work with JSON data here
-      data.photographers)
+    .then((data) => data.photographers)
     .catch((err) => {
       console.error('Erreur fetch photographers');
     });
@@ -18,9 +17,7 @@ async function getPhotographers() {
 async function getMedias() {
   const medias = await fetch('./data/photographers.json')
     .then((response) => response.json())
-    .then((data) =>
-      // Work with JSON data here
-      data.media)
+    .then((data) => data.media)
     .catch((err) => {
       console.error('Erreur fetch media');
     });
@@ -60,10 +57,8 @@ async function getMediasOfPhotographer() {
       (await allMedias).medias[value].photographerId == currentPhotographerId
     ) {
       mediasOfPhotographer.push((await allMedias).medias[value]);
-      // console.log("photograph name", (await allMedias).medias[value]);
     }
   }
-  // console.log("mediasOfPhotographer ", mediasOfPhotographer);
   return mediasOfPhotographer;
 }
 
@@ -94,7 +89,6 @@ async function getCurrentPhotographerData(photographers) {
       currentPhotographerData = photographers[index];
     }
   });
-  // console.log("currentPhotographerData", currentPhotographerData);
   return currentPhotographerData;
 }
 
@@ -105,7 +99,6 @@ async function gallerieBuilder() {
   const gallerieContainer = document.getElementById('photograph-gallerie');
   const currentSelectedtri = document.getElementById('selectFiltres').value;
   const currentMedia = await getMediasOfPhotographer();
-  // console.log("gallerieBuilder currentMedia:", currentMedia);
   if (currentSelectedtri == 'likes') {
     currentMedia.sort((b, a) => a.likes
       .toString()
@@ -129,7 +122,6 @@ async function gallerieBuilder() {
     );
     gallerieContainer.innerHTML += mediaModel.gallerieBlock;
 
-    // console.log(currentMedia.title, currentMedia.image, currentMedia.video);
     const obj = {};
     obj.id = currentMedia.id;
     obj.title = currentMedia.title;
@@ -218,7 +210,6 @@ function addEventChange() {
   document
     .getElementById('selectFiltres')
     .addEventListener('change', (event) => {
-      // console.log(this.options[event.target.selectedIndex].value);
       gallerieBuilder();
     });
 }
@@ -228,7 +219,7 @@ function addEventChange() {
  */
 async function init() {
   const currentPhotographerId = setIdParam();
-  // Récupère les datas des photographes
+  // Get photographers data
   const { photographers } = await getPhotographers();
   const { medias } = await getMedias('totallikes');
 

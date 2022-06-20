@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-undef */
 let nbSetPN = 0;

@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-unused-vars */
 // Fermer une modale avec Escape

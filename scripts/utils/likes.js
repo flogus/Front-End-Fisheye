@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable no-unused-vars */
 function addLikes() {
   // Add clicks on the hearts likes
