@@ -1,6 +1,5 @@
 class MediaImage {
   constructor(media) {
-    console.log('MediaImage Constructor', media);
     this._media = media;
   }
 
