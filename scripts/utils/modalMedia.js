@@ -22,9 +22,6 @@ function setMedia(media) {
   const mediaIdTarget = 'mediaImage';
   const mediaModel = new MediaFactory(media, extention);
 
-  console.log(media, extention);
-  console.log(mediaModel);
-
   // Remove media
   if (document.body.contains(document.querySelector('#media img'))) {
     document.querySelector('#media img').remove();
@@ -63,7 +60,6 @@ function setPrevNext(allModalData, index) {
     }
     setMedia(allModalData[index].media);
     setTitle(allModalData[index].title);
-    console.log('modalMediaPrev Index', index);
   }
 
   function clickNext() {
@@ -73,7 +69,6 @@ function setPrevNext(allModalData, index) {
     }
     setMedia(allModalData[index].media);
     setTitle(allModalData[index].title);
-    console.log('modalMediaNext Index', index);
   }
   function setArrowsListeners() {
     document.addEventListener('keydown', (event) => {

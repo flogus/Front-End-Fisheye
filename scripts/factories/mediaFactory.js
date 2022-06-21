@@ -3,8 +3,6 @@
 /* eslint-disable no-unused-vars */
 class MediaFactory {
   constructor(media, extension) {
-    console.log('MediaFactory Constructor', media, extension);
-
     if (extension === 'mp4') {
       return new MediaVideo(media);
     }
