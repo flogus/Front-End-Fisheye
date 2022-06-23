@@ -35,9 +35,7 @@ function buildPhotographHeader(currentPhotographerData) {
   const photographerInfos = document.getElementById('headerInfos');
   const photographerPhoto = document.getElementById('headerPhoto');
 
-  const photographerHeaderModel = new PhotographerHeader(
-    currentPhotographerData,
-  );
+  const photographerHeaderModel = new PhotographerHeader(currentPhotographerData);
   currentPhotographerPrice = currentPhotographerData.price;
   currentPhotographerName = currentPhotographerData.name;
   photographerInfos.innerHTML = photographerHeaderModel.headerInfos;
@@ -53,9 +51,7 @@ async function getMediasOfPhotographer() {
 
   for (const [value] of Object.entries((await allMedias).medias)) {
     // Filter on photographerId
-    if (
-      (await allMedias).medias[value].photographerId == currentPhotographerId
-    ) {
+    if ((await allMedias).medias[value].photographerId == currentPhotographerId) {
       mediasOfPhotographer.push((await allMedias).medias[value]);
     }
   }
@@ -100,9 +96,7 @@ async function gallerieBuilder() {
   const currentSelectedtri = document.getElementById('selectFiltres').value;
   const currentMedia = await getMediasOfPhotographer();
   if (currentSelectedtri == 'likes') {
-    currentMedia.sort((b, a) => a.likes
-      .toString()
-      .localeCompare(b.likes.toString(), 'en', { numeric: 'true' }));
+    currentMedia.sort((b, a) => a.likes.toString().localeCompare(b.likes.toString(), 'en', { numeric: 'true' }));
   }
   if (currentSelectedtri == 'date') {
     currentMedia.sort((a, b) => a.date.localeCompare(b.date));
@@ -116,10 +110,7 @@ async function gallerieBuilder() {
   const currentMediaName = '';
   currentMedia.forEach((currentMedia, index) => {
     // console.log(`${index}`, currentMedia);
-    const mediaModel = new PhotographerGallerieBlock(
-      currentMedia,
-      currentPhotographerName,
-    );
+    const mediaModel = new PhotographerGallerieBlock(currentMedia, currentPhotographerName);
     gallerieContainer.innerHTML += mediaModel.gallerieBlock;
 
     const obj = {};
@@ -174,17 +165,12 @@ async function displayData(photographers, medias) {
     });
   });
 
-  const currentPhotographerPrice = '';
-
   // Build the photographer block with informations and photo profil
   currentPhotographerData = await getCurrentPhotographerData(photographers);
   buildPhotographHeader(currentPhotographerData);
 
   function buildGallerieBlock(media) {
-    const mediaModel = new PhotographerGallerieBlock(
-      media,
-      currentPhotographerName,
-    );
+    const mediaModel = new PhotographerGallerieBlock(media, currentPhotographerName);
     photographerdGallerie.innerHTML += mediaModel.gallerieBlock;
   }
 
@@ -195,23 +181,20 @@ async function displayData(photographers, medias) {
   gallerieBuilder();
 
   // Bottom infos
-  // bottom-infos-dayprice
-  const bottomInfosTotallikes = document.getElementById(
-    'bottom-infos-totallikes',
-  );
+  // bottom-infos-total-likes
+  const bottomInfosTotallikes = document.getElementById('bottom-infos-totallikes');
   bottomInfosTotallikes.textContent = currentPhotographerTotallikes;
   bottomInfosTotallikes.setAttribute('value', currentPhotographerTotallikes);
+  // bottom-infos-dayprice
   const bottomInfosDayprice = document.getElementById('bottom-infos-dayprice');
   bottomInfosDayprice.textContent = `${currentPhotographerPrice}€ / jour`;
 }
 
 function addEventChange() {
   const dataSelectedTri = document.getElementById('selectFiltres');
-  document
-    .getElementById('selectFiltres')
-    .addEventListener('change', (event) => {
-      gallerieBuilder();
-    });
+  document.getElementById('selectFiltres').addEventListener('change', (event) => {
+    gallerieBuilder();
+  });
 }
 
 /**
@@ -223,9 +206,7 @@ async function init() {
   const { photographers } = await getPhotographers();
   const { medias } = await getMedias('totallikes');
 
-  const currentPhotographerName = await getCurrentPhotographerName(
-    photographers,
-  );
+  const currentPhotographerName = await getCurrentPhotographerName(photographers);
   displayData(photographers, medias);
 
   buildMediaPath(currentPhotographerName);
