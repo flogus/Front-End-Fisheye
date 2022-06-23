@@ -107,12 +107,9 @@ async function gallerieBuilder() {
   gallerieContainer.innerHTML = '';
 
   const modalData = [];
-  const currentMediaName = '';
   currentMedia.forEach((currentMedia, index) => {
-    // console.log(`${index}`, currentMedia);
     const mediaModel = new PhotographerGallerieBlock(currentMedia, currentPhotographerName);
     gallerieContainer.innerHTML += mediaModel.gallerieBlock;
-
     const obj = {};
     obj.id = currentMedia.id;
     obj.title = currentMedia.title;
@@ -131,12 +128,10 @@ async function gallerieBuilder() {
       });
     });
   });
-
-  // console.log("modalData", modalData.stringify);
-
   document
     .getElementById('photograph-gallerie')
     .setAttribute('data-medias', JSON.stringify(modalData));
+  addLikes();
 }
 
 async function displayData(photographers, medias) {
@@ -168,15 +163,6 @@ async function displayData(photographers, medias) {
   // Build the photographer block with informations and photo profil
   currentPhotographerData = await getCurrentPhotographerData(photographers);
   buildPhotographHeader(currentPhotographerData);
-
-  function buildGallerieBlock(media) {
-    const mediaModel = new PhotographerGallerieBlock(media, currentPhotographerName);
-    photographerdGallerie.innerHTML += mediaModel.gallerieBlock;
-  }
-
-  const photographerdGallerie = document.getElementById('photograph-gallerie');
-
-  const currentMedia = await getMediasOfPhotographer();
 
   gallerieBuilder();
 
