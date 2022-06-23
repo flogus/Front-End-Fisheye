@@ -10,6 +10,7 @@ class MediaVideo {
     video.setAttribute('controls', '');
     video.setAttribute('autoplay', '');
     video.setAttribute('muted', '');
+    video.setAttribute('id', 'mediaVideo');
 
     const videoSrc = document.createElement('source');
     videoSrc.setAttribute(
