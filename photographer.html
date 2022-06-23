@@ -26,7 +26,7 @@
         />
       </a>
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="false">
       <div class="photograph-header">
         <div id="headerInfos"></div>
         <button id="contact_button" class="contact_button">
@@ -48,7 +48,7 @@
       </div>
       <div id="photograph-gallerie"></div>
     </main>
-    <div id="contact_modal">
+    <div id="contact_modal" aria-hidden="true" role="dialog">
       <div class="modal">
         <header>
           <h2>
@@ -84,7 +84,7 @@
         </form>
       </div>
     </div>
-    <div id="media_modal">
+    <div id="media_modal" aria-hidden="true" role="dialog">
       <div class="modal">
         <header>
           <img
@@ -99,7 +99,7 @@
               <img src="assets/icons/previous.svg" alt="Précédent" />
             </a>
           </div>
-          <div id="media">
+          <div id="media" tabindex="0">
             <h3 id="mediaTitle">title</h3>
           </div>
           <div>
