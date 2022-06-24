@@ -27,21 +27,11 @@ class PhotographerGallerieBlock {
   }
 
   get imgUrl() {
-    return (
-      `${globalPhotosPath
-      + this._photographerName.split(' ')[0]
-      }/${
-        this._image}`
-    );
+    return `${globalPhotosPath + this._photographerName.split(' ')[0]}/${this._image}`;
   }
 
   get videoUrl() {
-    return (
-      `${globalPhotosPath
-      + this._photographerName.split(' ')[0]
-      }/${
-        this._video}`
-    );
+    return `${globalPhotosPath + this._photographerName.split(' ')[0]}/${this._video}`;
   }
 
   get mediaUrl() {
@@ -53,25 +43,9 @@ class PhotographerGallerieBlock {
 
   get gallerieBlock() {
     let template = "<div class='gallerie--card'>";
-    template
-      += `<a href='#' title='Ouvrir ${
-        this._title
-      }' mediaName='${
-        this.mediaUrl
-      }' mediaTitle='${
-        this._title
-      }' id='${
-        this._photoId
-      }'>`;
+    template += `<a href='#' title='Ouvrir ${this._title}' mediaName='${this.mediaUrl}' mediaTitle='${this._title}' id='${this._photoId}'>`;
     if (this._image !== undefined) {
-      template
-        += `<img id='${
-          this._photoId
-        }' src='${
-          this.imgUrl
-        }' class='' alt='${
-          this._title
-        }'>`;
+      template += `<img src='${this.imgUrl}' class='' alt='${this._title}'>`;
     }
     if (this._video !== undefined) {
       template += "<video width='100%' height='100%'>";
@@ -82,11 +56,7 @@ class PhotographerGallerieBlock {
     template += "<div class='gallerie--card-description'>";
     template += `<div>${this._title}</div>`;
     template
-      += `<div>${
-        this._likes
-      }<img class='svg-heart' src='assets/icons/heart.svg' alt='Add a like' value=${
-        this._likes
-      } />`
+      += `<div>${this._likes}<img class='svg-heart' src='assets/icons/heart.svg' alt='Add a like' value=${this._likes} />`
       + '</div>';
     template += '</div>';
     template += '</div>';
