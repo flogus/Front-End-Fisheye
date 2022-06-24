@@ -124,7 +124,7 @@ async function gallerieBuilder() {
     const imageLinks = document.querySelectorAll('.gallerie--card a');
     imageLinks.forEach((link, index) => {
       link.addEventListener('click', (event) => {
-        openModal('media', link, index);
+        openModal('media', index);
       });
     });
   });
