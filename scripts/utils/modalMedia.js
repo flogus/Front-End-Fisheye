@@ -6,9 +6,7 @@ let nbSetPN = 0;
 // eslint-disable-next-line no-unused-vars
 function openModal(target, link, index) {
   // const currentPhotoId = link.id;
-  const allModalData = JSON.parse(
-    document.getElementById('photograph-gallerie').dataset.medias,
-  );
+  const allModalData = JSON.parse(document.getElementById('photograph-gallerie').dataset.medias);
   const modal = document.getElementById(`${target}_modal`);
   modal.style.display = 'flex';
 
@@ -16,6 +14,17 @@ function openModal(target, link, index) {
   setTitle(allModalData[index].title);
   setPrevNext(allModalData, index);
   escapeCloseModal('media');
+
+  document.getElementById('main').setAttribute('aria-hidden', true);
+  document.getElementById(`${target}_modal`).setAttribute('aria-hidden', false);
+  const mediaImage = document.getElementById('mediaImage');
+  const mediaVideo = document.getElementById('mediaVideo');
+  if (mediaImage) {
+    mediaImage.focus();
+  }
+  if (mediaVideo) {
+    mediaVideo.focus();
+  }
 }
 function setMedia(media) {
   const extention = media.split('.').pop();
@@ -36,6 +45,7 @@ function setMedia(media) {
   if (extention == 'jpg') {
     document.querySelector('#media').prepend(mediaModel.getImage);
   }
+  document.querySelector('#media').focus();
 }
 function setTitle(title) {
   document.getElementById('mediaTitle').textContent = title;
@@ -95,5 +105,7 @@ function openModalContact() {
   const contactModal = document.getElementById('contact_modal');
   document.getElementById('contact-name').textContent = currentPhotographerName;
   contactModal.style.display = 'flex';
+  document.getElementById('contact_modal').setAttribute('aria-hidden', false);
+  document.getElementById('prenom').focus();
   escapeCloseModal('contact');
 }

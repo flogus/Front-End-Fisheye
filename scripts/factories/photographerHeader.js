@@ -15,7 +15,7 @@ class PhotographerHeader {
   }
 
   get headerInfos() {
-    let template = '<div>';
+    let template = '<div aria-label="photograph navigation" tabindex="1">';
     template += `<h1>${this._name}</h1>`;
     template += `<h2>${this._city}, ${this._country}</h2>`;
     template += `<h3>${this._tagline}</h3>`;
@@ -26,14 +26,7 @@ class PhotographerHeader {
 
   get headerPhoto() {
     let template = '<div>';
-    template
-      += `<img alt='Photographe : ${
-        this._name
-      }' src='${
-        globalPhotosPath
-      }Photographers ID Photos/${
-        this._portrait
-      }' />`;
+    template += `<img alt='Photographe : ${this._name}' src='${globalPhotosPath}Photographers ID Photos/${this._portrait}' />`;
     template += '</div>';
 
     return template;
