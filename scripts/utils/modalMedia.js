@@ -4,8 +4,7 @@
 let nbSetPN = 0;
 
 // eslint-disable-next-line no-unused-vars
-function openModal(target, link, index) {
-  // const currentPhotoId = link.id;
+function openModal(target, index) {
   const allModalData = JSON.parse(document.getElementById('photograph-gallerie').dataset.medias);
   const modal = document.getElementById(`${target}_modal`);
   modal.style.display = 'flex';
