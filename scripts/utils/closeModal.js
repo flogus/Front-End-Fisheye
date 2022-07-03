@@ -12,6 +12,9 @@ function escapeCloseModal(target) {
 
 function closeModal(target) {
   const modal = document.getElementById(`${target}_modal`);
+  document.getElementById('main').setAttribute('aria-hidden', false);
+  document.getElementById(`${target}_modal`).setAttribute('aria-hidden', true);
+
   modal.style.display = 'none';
 }
 
